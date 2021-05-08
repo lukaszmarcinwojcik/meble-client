@@ -1,0 +1,27 @@
+.mebleFilteringPanel {
+  width: 280px;
+  height: 800px;
+  float: left;
+  padding-top: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.paneloption {
+  margin-top: 20px;
+  border-bottom: black 2px solid;
+  padding-right: 15px;
+  padding-bottom: 20px;
+  text-align: right;
+}
+select {
+  height: 30px;
+  width: 80px;
+}
+.paneloption button {
+  height: 30px;
+  margin-left: 30px;
+  margin-right: 0px;
+}
+.szukaj {
+  width: 80px;
+}

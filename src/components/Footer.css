@@ -1,0 +1,38 @@
+.footer {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.842);
+  color: white;
+  clear: both;
+}
+
+.kolumna {
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  font-size: 20px;
+  height: 180px;
+  width: 32.98%;
+  float: left;
+}
+.kontener {
+  padding-top: 30px;
+  padding-bottom: 50px;
+  margin: auto;
+  height: 160px;
+  width: 61%;
+}
+
+.ikona {
+  float: left;
+  border: 2px solid white;
+  height: 70px;
+  width: 70px;
+  margin: 5px;
+}
+.media {
+  width: 66%;
+  margin: auto;
+}
+
+.footer p {
+  line-height: auto;
+}

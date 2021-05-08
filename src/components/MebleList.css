@@ -1,0 +1,25 @@
+.mebleList {
+  text-align: left;
+
+  float: left;
+  width: 80%;
+  height: auto;
+  /* overflow: scroll; */
+}
+.mebel {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: auto;
+  width: 400px;
+  border: 2px solid;
+  margin: 10px;
+  float: left;
+}
+/* 
+.mebleList div {
+  border: 5px solid gray;
+  margin-top: 10px;
+}
+h3 {
+  padding-top: 10px;
+  border-top: 5px solid gray;
+} */ ;
