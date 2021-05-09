@@ -13,37 +13,3 @@
   left: 10px;
   top: 30px;
 }
-.panelLogowania {
-  /* height: 500px;
-  width: 500px; */
-  margin-left: 30%;
-  margin-top: 10%;
-  background-color: rgba(128, 128, 128, 0.952);
-  border: 2px solid black;
-  width: 40%;
-  height: auto;
-  padding-top: 30px;
-  padding-bottom: 60px;
-}
-
-.btnclose {
-  height: 30px;
-}
-
-label {
-  display: block;
-}
-input {
-  display: block;
-  height: 30px;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 150px;
-}
-.btnform {
-  height: 30px;
-  width: 160px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}

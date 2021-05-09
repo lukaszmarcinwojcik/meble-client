@@ -33,7 +33,6 @@ class MebleFilteringPanel extends React.Component {
         {rodzaj.nazwa}
       </option>
     ));
-    console.log("to moje pomieszczenie: " + this.props.kolekcja);
     return (
       <div className="mebleFilteringPanel">
         <div className={"paneloption"}>

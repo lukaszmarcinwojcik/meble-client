@@ -4,6 +4,7 @@ import MebleList from "./MebleList";
 import MebleFilteringPanel from "./MebleFilteringPanel";
 import NavBar from "./NavBar";
 import Sliders from "./Sliders";
+import PanelLogowania from "./PanelLogowania";
 import Footer from "./Footer";
 
 const API = "http://localhost:5000/";
@@ -15,6 +16,8 @@ const listaRodzajow = "http://localhost:5000/listaRodzajow";
 
 class App extends Component {
   state = {
+    islogged: false,
+    loginMessage: null,
     isActiveLogPanel: false,
     poziomDostepu: 3,
     meble: [],
@@ -39,7 +42,6 @@ class App extends Component {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
         this.setState({
           meble: data.data,
         });
@@ -164,40 +166,61 @@ class App extends Component {
     var reqOptions = `filtruj?kolekcja=${kolekcja}&material=${material}&pomieszczenie=${pomieszczenie}&rodzaj=${rodzaj}`;
     this.postMebleList(reqOptions);
   };
-  handleLoginChange = (e) => {
-    console.log(e.target.type, "targettype");
-    console.log(e.target.name, "targetname");
-    const name = e.target.value;
-    const value = e.target.value;
-    this.setState = {
-      [name]: value,
-    };
-  };
   handleShowLoginPanel = () => {
-    console.log(this.state.isActiveLogPanel);
+    // console.log(this.state.isActiveLogPanel, "sasasasa");
     this.setState({
       isActiveLogPanel: !this.state.isActiveLogPanel,
+    });
+  };
+  handleLoginChange = (e) => {
+    // console.log(e.target.type, "targettype");
+    // console.log(e.target.name, "targetname");
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({
+      [name]: value,
     });
   };
 
   handleLoginSubmit = (e) => {
     e.preventDefault();
-    console.log("dziala??");
+
+    fetch("http://localhost:5000/login", {
+      method: "POST",
+      body: JSON.stringify({
+        login: this.state.username,
+        password: this.state.password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          loginMessage: data.loginMessage,
+          islogged: data.islogged,
+          poziomDostepu: data.poziomDostepu,
+        });
+      });
   };
 
   render() {
-    const meble = this.state.meble;
-
     return (
       <div className={"App"}>
-        <NavBar
-          handleLoginSubmit={this.handleLoginSubmit}
-          handleShowLoginPanel={this.handleShowLoginPanel}
-          isactive={this.state.isActiveLogPanel}
-          handleLoginChange={this.state.handleLoginChange}
-          user={this.state.user}
-          pwd={this.state.pwd}
-        />
+        <NavBar handleShowLoginPanel={this.handleShowLoginPanel} />
+
+        {this.state.isActiveLogPanel ? (
+          <PanelLogowania
+            loginMessage={this.state.loginMessage}
+            handleShowLoginPanel={this.handleShowLoginPanel}
+            username={this.state.username}
+            password={this.state.password}
+            handleLoginChange={this.handleLoginChange}
+            handleLoginSubmit={this.handleLoginSubmit}
+          />
+        ) : null}
         <Sliders />
         <section className="katalogProduktow">
           <MebleFilteringPanel
