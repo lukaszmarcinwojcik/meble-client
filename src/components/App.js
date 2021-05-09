@@ -15,6 +15,7 @@ const listaRodzajow = "http://localhost:5000/listaRodzajow";
 
 class App extends Component {
   state = {
+    isActiveLogPanel: false,
     poziomDostepu: 3,
     meble: [],
     kolekcje: [],
@@ -25,8 +26,8 @@ class App extends Component {
     material: "",
     pomieszczenie: "",
     rodzaj: "",
-    username: "dfs",
-    password: "sdf",
+    username: "",
+    password: "",
   };
   getMebleList = () => {
     fetch(listaProduktow)
@@ -164,21 +165,35 @@ class App extends Component {
     this.postMebleList(reqOptions);
   };
   handleLoginChange = (e) => {
-    console.log(e.target.type);
-    console.log(e.target.name);
+    console.log(e.target.type, "targettype");
+    console.log(e.target.name, "targetname");
     const name = e.target.value;
     const value = e.target.value;
     this.setState = {
       [name]: value,
     };
   };
+  handleShowLoginPanel = () => {
+    console.log(this.state.isActiveLogPanel);
+    this.setState({
+      isActiveLogPanel: !this.state.isActiveLogPanel,
+    });
+  };
+
+  handleLoginSubmit = (e) => {
+    e.preventDefault();
+    console.log("dziala??");
+  };
 
   render() {
     const meble = this.state.meble;
-    console.log("kolekcja: ", this.state.kolekcja);
+
     return (
       <div className={"App"}>
         <NavBar
+          handleLoginSubmit={this.handleLoginSubmit}
+          handleShowLoginPanel={this.handleShowLoginPanel}
+          isactive={this.state.isActiveLogPanel}
           handleLoginChange={this.state.handleLoginChange}
           user={this.state.user}
           pwd={this.state.pwd}
@@ -198,7 +213,10 @@ class App extends Component {
             handleFilteringChange={this.handleFilteringChange}
             handleDeleteFilters={this.handleDeleteFilters}
           />
-          <MebleList meble={meble} poziomDostepu={this.state.poziomDostepu} />
+          <MebleList
+            meble={this.state.meble}
+            poziomDostepu={this.state.poziomDostepu}
+          />
         </section>
         <Footer />
       </div>
