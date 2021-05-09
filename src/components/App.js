@@ -141,8 +141,12 @@ class App extends Component {
 
   handleDeleteFilters = () => {
     this.getMebleList();
+
     this.setState({
       kolekcja: "",
+      material: "",
+      pomieszczenie: "",
+      rodzaj: "",
     });
   };
   handleFilteringChange = (e) => {
@@ -182,7 +186,10 @@ class App extends Component {
         <Sliders />
         <section className="katalogProduktow">
           <MebleFilteringPanel
-            kolekcja={this.props.kolekcja}
+            kolekcja={this.state.kolekcja}
+            material={this.state.material}
+            pomieszczenie={this.state.pomieszczenie}
+            rodzaj={this.state.rodzaj}
             kolekcje={this.state.kolekcje}
             materialy={this.state.materialy}
             pomieszczenia={this.state.pomieszczenia}
