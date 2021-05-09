@@ -19,7 +19,7 @@ class App extends Component {
     islogged: false,
     loginMessage: null,
     isActiveLogPanel: false,
-    poziomDostepu: 3,
+    poziomDostepu: 0,
     meble: [],
     kolekcje: [],
     materialy: [],
@@ -204,6 +204,28 @@ class App extends Component {
           poziomDostepu: data.poziomDostepu,
         });
       });
+    this.setState({
+      username: "",
+      password: "",
+    });
+  };
+  handleLogout = () => {
+    fetch("http://localhost:5000/logout")
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        }
+        throw Error(response.status);
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          loginMessage: data.loginMessage,
+          islogged: data.islogged,
+          poziomDostepu: data.poziomDostepu,
+        });
+      })
+      .catch((error) => console.log(error));
   };
 
   render() {
@@ -213,6 +235,8 @@ class App extends Component {
 
         {this.state.isActiveLogPanel ? (
           <PanelLogowania
+            handleLogout={this.handleLogout}
+            islogged={this.state.islogged}
             loginMessage={this.state.loginMessage}
             handleShowLoginPanel={this.handleShowLoginPanel}
             username={this.state.username}
@@ -221,6 +245,7 @@ class App extends Component {
             handleLoginSubmit={this.handleLoginSubmit}
           />
         ) : null}
+
         <Sliders />
         <section className="katalogProduktow">
           <MebleFilteringPanel
