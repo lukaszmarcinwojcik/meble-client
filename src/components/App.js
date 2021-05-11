@@ -16,6 +16,8 @@ const listaRodzajow = "http://localhost:5000/listaRodzajow";
 
 class App extends Component {
   state = {
+    edytujParametryIsActive: false,
+    addProduktPanelIsActive: false,
     islogged: false,
     loginMessage: null,
     isActiveLogPanel: false,
@@ -227,11 +229,29 @@ class App extends Component {
       })
       .catch((error) => console.log(error));
   };
+  showAddProduktPanel = (e) => {
+    console.log("status paneluADD: ", !this.state.addProduktPanelIsActive);
+    this.setState({
+      addProduktPanelIsActive: !this.state.addProduktPanelIsActive,
+      edytujParametryIsActive: false,
+    });
+  };
+
+  showEdytujParametry = (e) => {
+    console.log("status paneluEDIT: ", !this.state.edytujParametryIsActive);
+    this.setState({
+      edytujParametryIsActive: !this.state.edytujParametryIsActive,
+      addProduktPanelIsActive: false,
+    });
+  };
 
   render() {
     return (
       <div className={"App"}>
-        <NavBar handleShowLoginPanel={this.handleShowLoginPanel} />
+        <NavBar
+          handleShowLoginPanel={this.handleShowLoginPanel}
+          isActiveLogPanel={this.state.isActiveLogPanel}
+        />
 
         {this.state.isActiveLogPanel ? (
           <PanelLogowania
@@ -260,10 +280,15 @@ class App extends Component {
             handleFilteringSubmit={this.handleFilteringSubmit}
             handleFilteringChange={this.handleFilteringChange}
             handleDeleteFilters={this.handleDeleteFilters}
+            poziomDostepu={this.state.poziomDostepu}
           />
           <MebleList
             meble={this.state.meble}
             poziomDostepu={this.state.poziomDostepu}
+            addProduktPanelIsActive={this.state.addProduktPanelIsActive}
+            showAddProduktPanel={this.showAddProduktPanel}
+            edytujParametryIsActive={this.state.edytujParametryIsActive}
+            showEdytujParametry={this.showEdytujParametry}
           />
         </section>
         <Footer />

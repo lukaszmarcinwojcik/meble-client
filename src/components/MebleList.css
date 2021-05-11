@@ -1,25 +1,69 @@
 .mebleList {
   text-align: left;
-
   float: left;
-  width: 80%;
   height: auto;
+  width: 70vw;
   /* overflow: scroll; */
 }
+.mebleListTitle {
+  margin-left: 10px;
+  font-size: 30px;
+}
 .mebel {
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
   height: auto;
   width: 400px;
   border: 2px solid;
   margin: 10px;
   float: left;
 }
-/* 
-.mebleList div {
-  border: 5px solid gray;
-  margin-top: 10px;
+.mebeltitle {
+  text-align: center;
 }
-h3 {
+
+.mebleDescription {
+  /* background-color: red; */
+  height: 170px;
+  width: 190px;
+  float: left;
+  padding-left: 10px;
+}
+
+.mebelImg {
+  padding-right: 10px;
+  float: left;
+  background-color: rgba(0, 0, 0, 0.781);
+  height: 170px;
+  width: 190px;
+  background-image: url("https://www.brw.pl/gfx/brw/img/produkt/krzeslo-bawaria-wybarwienie-drewna-orzech-wloski-tkanina-granat-navy-112205-mediumb.jpg");
+  background-size: cover;
+}
+span {
+  font-weight: bold;
+}
+
+.adminpanel {
+  /* margin: 10px; */
+  margin-top: 20px;
+  border-top: black 2px solid;
+  clear: both;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-top: 10px;
-  border-top: 5px solid gray;
-} */ ;
+  padding-bottom: 10px;
+}
+.adminpanelbtn {
+  height: 30px;
+  width: 150px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.addNewMebel {
+  height: 50px;
+  width: 360px;
+
+  margin-bottom: 30px;
+}

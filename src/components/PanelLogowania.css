@@ -1,6 +1,4 @@
 .panelLogowania {
-  /* height: 500px;
-  width: 500px; */
   position: fixed;
   margin-left: 30%;
   margin-top: 15%;
@@ -16,7 +14,7 @@
   height: 30px;
 }
 
-label {
+.loginlabel {
   display: block;
 }
 input {

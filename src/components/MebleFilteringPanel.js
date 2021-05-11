@@ -5,13 +5,15 @@ class MebleFilteringPanel extends React.Component {
   state = {};
 
   render() {
-    let kolekcje = [{ _id: -1, nazwa: "wybierz" }].concat(this.props.kolekcje);
+    let kolekcje = [{ _id: -1, nazwa: "wszystkie" }].concat(
+      this.props.kolekcje
+    );
     kolekcje = kolekcje.map((kolekcja) => (
       <option key={kolekcja._id} value={kolekcja.nazwa}>
         {kolekcja.nazwa}
       </option>
     ));
-    let materialy = [{ _id: -1, nazwa: "wybierz" }].concat(
+    let materialy = [{ _id: -1, nazwa: "wszystkie" }].concat(
       this.props.materialy
     );
     materialy = materialy.map((material) => (
@@ -19,7 +21,7 @@ class MebleFilteringPanel extends React.Component {
         {material.nazwa}
       </option>
     ));
-    let pomieszczenia = [{ _id: -1, nazwa: "wybierz" }].concat(
+    let pomieszczenia = [{ _id: -1, nazwa: "wszystkie" }].concat(
       this.props.pomieszczenia
     );
     pomieszczenia = pomieszczenia.map((pomieszczenie) => (
@@ -27,7 +29,7 @@ class MebleFilteringPanel extends React.Component {
         {pomieszczenie.nazwa}
       </option>
     ));
-    let rodzaje = [{ _id: -1, nazwa: "wybierz" }].concat(this.props.rodzaje);
+    let rodzaje = [{ _id: -1, nazwa: "wszystkie" }].concat(this.props.rodzaje);
     rodzaje = rodzaje.map((rodzaj) => (
       <option key={rodzaj._id} value={rodzaj.nazwa}>
         {rodzaj.nazwa}
@@ -61,7 +63,7 @@ class MebleFilteringPanel extends React.Component {
             </select>
           </div>
           <div className={"paneloption"}>
-            <label htmlFor="pomieszczenie">Wybierz pomieszczenie:</label>
+            <label htmlFor="pomieszczenie">Wybierz pomieszczenie: </label>
             <select
               value={this.props.pomieszczenie}
               name={"pomieszczenie"}
@@ -81,7 +83,6 @@ class MebleFilteringPanel extends React.Component {
             </select>
           </div>
           <div className={"paneloption"}>
-            {" "}
             <button onClick={this.props.handleDeleteFilters}>
               Pokaz wszystkie
             </button>

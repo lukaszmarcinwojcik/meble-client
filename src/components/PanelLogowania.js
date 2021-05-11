@@ -17,7 +17,7 @@ const PanelLogowania = (props) => {
   const formlog = (
     <form onSubmit={props.handleLoginSubmit}>
       <h2>Masz już konto?! Zaloguj się!</h2>
-      <label htmlFor="user">
+      <label className={"loginlabel"} htmlFor="user">
         Wprowadz login:
         <input
           type="text"
@@ -27,7 +27,7 @@ const PanelLogowania = (props) => {
           onChange={props.handleLoginChange}
         />
       </label>
-      <label htmlFor="password">
+      <label className={"loginlabel"} htmlFor="password">
         Wprowadz haslo:
         <input
           type="password"

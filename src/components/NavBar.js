@@ -6,7 +6,7 @@ const NavBar = (props) => {
     <nav className="navbar">
       <h2 className="titlenav">MEBLE KLASYCZNE </h2>
       <button className={"logowanie"} onClick={props.handleShowLoginPanel}>
-        LOGOWANIE
+        {props.isActiveLogPanel ? "ZAMKNIJ" : "LOGOWANIE"}
       </button>
     </nav>
   );
