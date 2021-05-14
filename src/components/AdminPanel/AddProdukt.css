@@ -1,6 +1,21 @@
-.AddProdukt {
+.AddProduktPanel {
   width: 600px;
-  height: 400px;
-  border: black solid 2px;
-  background-color: chartreuse;
+  height: auto;
+  /* border: black solid 2px; */
+
+  text-align: left;
+}
+
+.btnAdd {
+  height: 40px;
+  width: 210px;
+}
+.addProduktinput {
+  height: 30px;
+  width: 200px;
+}
+.selectAddProdukt {
+  height: 40px;
+  width: 210px;
+  margin-left: 5px;
 }

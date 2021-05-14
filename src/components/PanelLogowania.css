@@ -17,7 +17,7 @@
 .loginlabel {
   display: block;
 }
-input {
+.logPanel {
   display: block;
   height: 30px;
   margin: auto;

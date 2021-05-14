@@ -44,6 +44,7 @@ class MebleFilteringPanel extends React.Component {
           <div className={"paneloption"}>
             <label htmlFor="kolekcja">Wybierz kolekcje: </label>
             <select
+              className={"selectfilterPanel"}
               value={this.props.kolekcja}
               name={"kolekcja"}
               onChange={this.props.handleFilteringChange}
@@ -55,6 +56,7 @@ class MebleFilteringPanel extends React.Component {
           <div className={"paneloption"}>
             <label htmlFor="material">Wybierz material: </label>
             <select
+              className={"selectfilterPanel"}
               value={this.props.material}
               name={"material"}
               onChange={this.props.handleFilteringChange}
@@ -65,6 +67,7 @@ class MebleFilteringPanel extends React.Component {
           <div className={"paneloption"}>
             <label htmlFor="pomieszczenie">Wybierz pomieszczenie: </label>
             <select
+              className={"selectfilterPanel"}
               value={this.props.pomieszczenie}
               name={"pomieszczenie"}
               onChange={this.props.handleFilteringChange}
@@ -75,6 +78,7 @@ class MebleFilteringPanel extends React.Component {
           <div className={"paneloption"}>
             <label htmlFor="rodzaj">Wybierz rodzaj: </label>
             <select
+              className={"selectfilterPanel"}
               value={this.props.rodzaj}
               name="rodzaj"
               onChange={this.props.handleFilteringChange}
@@ -83,7 +87,10 @@ class MebleFilteringPanel extends React.Component {
             </select>
           </div>
           <div className={"paneloption"}>
-            <button onClick={this.props.handleDeleteFilters}>
+            <button
+              className={"butnMebleFilter"}
+              onClick={this.props.handleDeleteFilters}
+            >
               Pokaz wszystkie
             </button>
             <button

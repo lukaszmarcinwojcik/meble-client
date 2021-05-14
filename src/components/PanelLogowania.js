@@ -20,6 +20,7 @@ const PanelLogowania = (props) => {
       <label className={"loginlabel"} htmlFor="user">
         Wprowadz login:
         <input
+          className={"logPanel"}
           type="text"
           id="user"
           name="username"
@@ -30,6 +31,7 @@ const PanelLogowania = (props) => {
       <label className={"loginlabel"} htmlFor="password">
         Wprowadz haslo:
         <input
+          className={"logPanel"}
           type="password"
           id="password"
           name="password"
