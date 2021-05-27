@@ -1,7 +1,7 @@
 .panelLogowania {
   position: fixed;
   margin-left: 30%;
-  margin-top: 15%;
+  margin-top: 10%;
   background-color: rgba(128, 128, 128, 0.952);
   border: 2px solid black;
   width: 40%;
@@ -34,4 +34,10 @@
 
 .msg {
   color: brown;
+}
+.reglogbtn {
+  color: darkred;
+}
+.reglogbtn:hover {
+  color: rgb(37, 2, 2);
 }

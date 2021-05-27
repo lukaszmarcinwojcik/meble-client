@@ -1,8 +1,8 @@
 import React from "react";
 import "./MebleList.css";
-import AddProdukt from "./AdminPanel/AddProdukt";
-import EdytujParametry from "./AdminPanel/EdytujParametry";
-import DeleteEditProdukt from "./AdminPanel/DeleteEditProdukt";
+import AddProdukt from "../AdminPanel/AddProdukt";
+import EdytujParametry from "../AdminPanel/EdytujParametry";
+import DeleteEditProdukt from "../AdminPanel/DeleteEditProdukt";
 
 class MebleList extends React.Component {
   state = {
@@ -64,15 +64,16 @@ class MebleList extends React.Component {
             
           /> */}
         </div>
-        {this.props.poziomDostepu === 3 ? <DeleteEditProdukt /> : null}
+        {this.props.accessLevel === 3 ? <DeleteEditProdukt /> : null}
       </div>
     ));
     return (
       <div className="mebleList">
         <div className={"mebleListTitle"}>
           <h2>KATALOG MEBLI</h2>
-          {this.props.poziomDostepu === 3 ? dodajNowyMebel : null}
-          {this.props.poziomDostepu === 3 ? edytujParametry : null}
+          <h2 onClick={this.props.handleShowCart}>Przejdz do koszyka</h2>
+          {this.props.accessLevel === 3 ? dodajNowyMebel : null}
+          {this.props.accessLevel === 3 ? edytujParametry : null}
           {this.state.addProduktPanelIsActive ? (
             <AddProdukt showAddProduktPanel={this.state.showAddProduktPanel} />
           ) : null}

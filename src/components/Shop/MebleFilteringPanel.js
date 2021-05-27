@@ -5,23 +5,19 @@ class MebleFilteringPanel extends React.Component {
   state = {};
 
   render() {
-    let kolekcje = [{ _id: -1, nazwa: "wszystkie" }].concat(
-      this.props.kolekcje
-    );
+    let kolekcje = [{ _id: -1, nazwa: "" }].concat(this.props.kolekcje);
     kolekcje = kolekcje.map((kolekcja) => (
       <option key={kolekcja._id} value={kolekcja.nazwa}>
         {kolekcja.nazwa}
       </option>
     ));
-    let materialy = [{ _id: -1, nazwa: "wszystkie" }].concat(
-      this.props.materialy
-    );
+    let materialy = [{ _id: -1, nazwa: "" }].concat(this.props.materialy);
     materialy = materialy.map((material) => (
       <option key={material._id} value={material.nazwa}>
         {material.nazwa}
       </option>
     ));
-    let pomieszczenia = [{ _id: -1, nazwa: "wszystkie" }].concat(
+    let pomieszczenia = [{ _id: -1, nazwa: "" }].concat(
       this.props.pomieszczenia
     );
     pomieszczenia = pomieszczenia.map((pomieszczenie) => (
@@ -29,7 +25,7 @@ class MebleFilteringPanel extends React.Component {
         {pomieszczenie.nazwa}
       </option>
     ));
-    let rodzaje = [{ _id: -1, nazwa: "wszystkie" }].concat(this.props.rodzaje);
+    let rodzaje = [{ _id: -1, nazwa: "" }].concat(this.props.rodzaje);
     rodzaje = rodzaje.map((rodzaj) => (
       <option key={rodzaj._id} value={rodzaj.nazwa}>
         {rodzaj.nazwa}

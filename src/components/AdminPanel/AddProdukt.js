@@ -1,7 +1,7 @@
 import React from "react";
 import "./AddProdukt.css";
 
-const listaProduktow = "http://localhost:5000/listaProduktow";
+// const listaProduktow = "http://localhost:5000/listaProduktow";
 const listaKolekcji = "http://localhost:5000/listaKolekcji";
 const listaMaterialow = "http://localhost:5000/listaMaterialow";
 const listaPomieszczen = "http://localhost:5000/listaPomieszczen";

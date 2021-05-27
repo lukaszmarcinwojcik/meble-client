@@ -1,174 +1,24 @@
 import React, { Component } from "react";
 import "./App.css";
-import MebleList from "./MebleList";
-import MebleFilteringPanel from "./MebleFilteringPanel";
 import NavBar from "./NavBar/NavBar";
 import Sliders from "./Sliders/Sliders";
-import PanelLogowania from "./PanelLogowania";
 import Footer from "./Footer/Footer";
 import Blog from "./Blog/Blog";
 import Newsletter from "./Newsletter/Newsletter";
 import AboutUs from "./AboutUS/AboutUs";
-
-const API = "http://localhost:5000/";
-const listaProduktow = "http://localhost:5000/listaProduktow";
-const listaKolekcji = "http://localhost:5000/listaKolekcji";
-const listaMaterialow = "http://localhost:5000/listaMaterialow";
-const listaPomieszczen = "http://localhost:5000/listaPomieszczen";
-const listaRodzajow = "http://localhost:5000/listaRodzajow";
+import Shop from "./Shop/Shop";
+import LoginPanel from "./LoginPanel/LoginPanel";
 
 class App extends Component {
   state = {
-    islogged: true,
+    islogged: false,
     loginMessage: null,
     isActiveLogPanel: false,
-    poziomDostepu: 3,
-    meble: [],
-    kolekcje: [],
-    materialy: [],
-    pomieszczenia: [],
-    rodzaje: [],
-    kolekcja: "",
-    material: "",
-    pomieszczenie: "",
-    rodzaj: "",
+    accessLevel: 0,
     username: "",
     password: "",
   };
-  getMebleList = () => {
-    fetch(listaProduktow)
-      .then((response) => {
-        if (response.ok) {
-          return response;
-        }
-        throw Error(response.status);
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          meble: data.data,
-        });
-      })
-      .catch((error) => console.log(error));
-  };
 
-  getKolekcjeList = () => {
-    fetch(listaKolekcji)
-      .then((response) => {
-        if (response.ok) {
-          return response;
-        }
-        throw Error(response.status);
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
-        this.setState({
-          kolekcje: data.data,
-        });
-      })
-      .catch((error) => console.log(error));
-  };
-
-  getMaterialyList = () => {
-    fetch(listaMaterialow)
-      .then((response) => {
-        if (response.ok) {
-          return response;
-        }
-        throw Error(response.status);
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
-        this.setState({
-          materialy: data.data,
-        });
-      })
-      .catch((error) => console.log(error));
-  };
-
-  getPomieszczeniaList = () => {
-    fetch(listaPomieszczen)
-      .then((response) => {
-        if (response.ok) {
-          return response;
-        }
-        throw Error(response.status);
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
-        this.setState({
-          pomieszczenia: data.data,
-        });
-      })
-      .catch((error) => console.log(error));
-  };
-
-  getRodzajeList = () => {
-    fetch(listaRodzajow)
-      .then((response) => {
-        if (response.ok) {
-          return response;
-        }
-        throw Error(response.status);
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
-        this.setState({
-          rodzaje: data.data,
-        });
-      })
-      .catch((error) => console.log(error));
-  };
-
-  componentDidMount() {
-    this.getMebleList();
-    this.getKolekcjeList();
-    this.getMaterialyList();
-    this.getPomieszczeniaList();
-    this.getRodzajeList();
-  }
-
-  postMebleList = (reqOptions) => {
-    console.log(API + reqOptions);
-    const url = API + reqOptions;
-    fetch(url, { method: "GET" })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.title, data.data);
-        this.setState({
-          meble: data.data,
-        });
-      });
-  };
-
-  handleDeleteFilters = () => {
-    this.getMebleList();
-
-    this.setState({
-      kolekcja: "",
-      material: "",
-      pomieszczenie: "",
-      rodzaj: "",
-    });
-  };
-  handleFilteringChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  handleFilteringSubmit = (e) => {
-    e.preventDefault();
-    const { kolekcja, material, pomieszczenie, rodzaj } = this.state;
-    var reqOptions = `filtruj?kolekcja=${kolekcja}&material=${material}&pomieszczenie=${pomieszczenie}&rodzaj=${rodzaj}`;
-    this.postMebleList(reqOptions);
-  };
   handleShowLoginPanel = () => {
     // console.log(this.state.isActiveLogPanel, "sasasasa");
     this.setState({
@@ -204,7 +54,7 @@ class App extends Component {
         this.setState({
           loginMessage: data.loginMessage,
           islogged: data.islogged,
-          poziomDostepu: data.poziomDostepu,
+          accessLevel: data.accessLevel,
         });
       });
     this.setState({
@@ -225,7 +75,7 @@ class App extends Component {
         this.setState({
           loginMessage: data.loginMessage,
           islogged: data.islogged,
-          poziomDostepu: data.poziomDostepu,
+          accessLevel: data.accessLevel,
         });
       })
       .catch((error) => console.log(error));
@@ -240,7 +90,7 @@ class App extends Component {
         />
 
         {this.state.isActiveLogPanel ? (
-          <PanelLogowania
+          <LoginPanel
             handleLogout={this.handleLogout}
             islogged={this.state.islogged}
             loginMessage={this.state.loginMessage}
@@ -253,26 +103,12 @@ class App extends Component {
         ) : null}
 
         <Sliders />
-        <section id="shop" className="katalogProduktow">
-          <MebleFilteringPanel
-            kolekcja={this.state.kolekcja}
-            material={this.state.material}
-            pomieszczenie={this.state.pomieszczenie}
-            rodzaj={this.state.rodzaj}
-            kolekcje={this.state.kolekcje}
-            materialy={this.state.materialy}
-            pomieszczenia={this.state.pomieszczenia}
-            rodzaje={this.state.rodzaje}
-            handleFilteringSubmit={this.handleFilteringSubmit}
-            handleFilteringChange={this.handleFilteringChange}
-            handleDeleteFilters={this.handleDeleteFilters}
-            poziomDostepu={this.state.poziomDostepu}
-          />
-          <MebleList
-            meble={this.state.meble}
-            poziomDostepu={this.state.poziomDostepu}
-          />
-        </section>
+        {/* <section id="shop" className="katalogProduktow"></section> */}
+        <Shop
+          islogged={this.state.islogged}
+          isActiveLogPanel={this.state.isActiveLogPanel}
+          accessLevel={this.state.accessLevel}
+        />
         <Blog />
         <Newsletter />
         <AboutUs />
