@@ -1,0 +1,27 @@
+.menubar {
+  position: fixed;
+  width: 230px;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.404);
+  padding-left: 0px;
+  margin-top: 50px;
+}
+.menubar a {
+  text-decoration: none;
+  text-align: left;
+  display: block;
+  font-size: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-bottom: 2px solid lightgray;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.menubar a:visited {
+  color: white;
+}
+.menubar a:hover {
+  color: rgb(0, 0, 0);
+}

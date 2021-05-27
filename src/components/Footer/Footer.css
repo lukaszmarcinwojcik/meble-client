@@ -10,7 +10,8 @@
   border-right: 2px solid white;
   font-size: 20px;
   height: 180px;
-  width: 32.98%;
+  /* width: 32.98%; */
+  width: 300px;
   float: left;
 }
 .kontener {
@@ -18,7 +19,7 @@
   padding-bottom: 50px;
   margin: auto;
   height: 160px;
-  width: 61%;
+  width: 912px;
 }
 
 .ikona {
@@ -29,7 +30,7 @@
   margin: 5px;
 }
 .media {
-  width: 66%;
+  width: 255px;
   margin: auto;
 }
 

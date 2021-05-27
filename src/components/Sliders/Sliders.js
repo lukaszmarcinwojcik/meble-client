@@ -5,7 +5,7 @@ class Sliders extends React.Component {
   state = {};
   render() {
     return (
-      <section className="banner">
+      <section id="banner" className="banner">
         {/* <h2 className="titlesliders">Piękna i elegancka sypialnia...</h2> */}
       </section>
     );

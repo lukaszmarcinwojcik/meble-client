@@ -2,7 +2,7 @@ import React from "react";
 import "./Footer.css";
 
 const Footer = (props) => {
-  return (
+  return ( 
     <footer className="footer">
       <div className="kontener">
         <div className={"kolumna"}>

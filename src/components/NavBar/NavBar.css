@@ -10,11 +10,20 @@
 }
 .logowanie {
   position: absolute;
+  right: 10px;
+  top: 25px;
+  height: 30px;
+  width: 110px;
+}
+
+.menubtn {
+  position: absolute;
   left: 10px;
   top: 25px;
   height: 30px;
   width: 110px;
 }
+
 .addNewMebel {
   margin-right: 30px;
 }

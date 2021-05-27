@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import "./App.css";
 import MebleList from "./MebleList";
 import MebleFilteringPanel from "./MebleFilteringPanel";
-import NavBar from "./NavBar";
-import Sliders from "./Sliders";
+import NavBar from "./NavBar/NavBar";
+import Sliders from "./Sliders/Sliders";
 import PanelLogowania from "./PanelLogowania";
-import Footer from "./Footer";
+import Footer from "./Footer/Footer";
+import Blog from "./Blog/Blog";
+import Newsletter from "./Newsletter/Newsletter";
+import AboutUs from "./AboutUS/AboutUs";
 
 const API = "http://localhost:5000/";
 const listaProduktow = "http://localhost:5000/listaProduktow";
@@ -16,10 +19,10 @@ const listaRodzajow = "http://localhost:5000/listaRodzajow";
 
 class App extends Component {
   state = {
-    islogged: false,
+    islogged: true,
     loginMessage: null,
     isActiveLogPanel: false,
-    poziomDostepu: 0,
+    poziomDostepu: 3,
     meble: [],
     kolekcje: [],
     materialy: [],
@@ -250,7 +253,7 @@ class App extends Component {
         ) : null}
 
         <Sliders />
-        <section className="katalogProduktow">
+        <section id="shop" className="katalogProduktow">
           <MebleFilteringPanel
             kolekcja={this.state.kolekcja}
             material={this.state.material}
@@ -270,6 +273,9 @@ class App extends Component {
             poziomDostepu={this.state.poziomDostepu}
           />
         </section>
+        <Blog />
+        <Newsletter />
+        <AboutUs />
         <Footer />
       </div>
     );

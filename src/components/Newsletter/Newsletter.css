@@ -1,0 +1,30 @@
+.newsletter {
+  background-color: lightgray;
+}
+.newslettercont {
+  clear: both;
+  width: 1200px;
+  height: 700px;
+  margin: auto;
+}
+
+.newsletterForm {
+  width: 530px;
+  float: left;
+  margin: 20px;
+}
+
+.newsletterDescription {
+  float: left;
+  width: 530px;
+  margin: 40px;
+}
+
+.error {
+  color: red;
+  font-size: 15px;
+}
+.newsletterMsg {
+  color: green;
+  font-size: 18px;
+}

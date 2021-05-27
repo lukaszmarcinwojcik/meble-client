@@ -1,5 +1,6 @@
 import React from "react";
 import "./EdytujParametry.css";
+import AddEditDeleteParametr from "./ParemetryMebli/AddEditDeleteParametr";
 
 const listaKolekcji = "http://localhost:5000/listaKolekcji";
 const listaMaterialow = "http://localhost:5000/listaMaterialow";
@@ -8,6 +9,9 @@ const listaRodzajow = "http://localhost:5000/listaRodzajow";
 
 class EdytujParametry extends React.Component {
   state = {
+    isActiveKolekcjaAdd: false,
+    isActiveKolekcjaDelete: false,
+    isActiveKolekcjaEdit: false,
     kolekcje: [],
     materialy: [],
     pomieszczenia: [],
@@ -104,30 +108,22 @@ class EdytujParametry extends React.Component {
         <div className={"paneloption"}>
           <h2>Panel edycji parametrow mebli</h2>
         </div>
-        <div className={"paneloption"}>
-          <label>KOLEKCJE: </label>
-          <button className={"adminpanelbtn"}>DODAJ</button>
-          <button className={"adminpanelbtn"}>USUN</button>
-          <button className={"adminpanelbtn"}>EDYTUJ</button>
-        </div>
-        <div className={"paneloption"}>
-          <label>MATERIALY: </label>
-          <button className={"adminpanelbtn"}>DODAJ</button>
-          <button className={"adminpanelbtn"}>USUN</button>
-          <button className={"adminpanelbtn"}>EDYTUJ</button>
-        </div>
-        <div className={"paneloption"}>
-          <label>RODZAJE: </label>
-          <button className={"adminpanelbtn"}>DODAJ</button>
-          <button className={"adminpanelbtn"}>USUN</button>
-          <button className={"adminpanelbtn"}>EDYTUJ</button>
-        </div>
-        <div className={"paneloption"}>
-          <label>POMIESZCZENIA: </label>
-          <button className={"adminpanelbtn"}>DODAJ</button>
-          <button className={"adminpanelbtn"}>USUN</button>
-          <button className={"adminpanelbtn"}>EDYTUJ</button>
-        </div>
+        <AddEditDeleteParametr
+          title={"KOLEKCJE"}
+          itemsList={this.state.kolekcje}
+        />
+        <AddEditDeleteParametr
+          title={"MATERIALY"}
+          itemsList={this.state.materialy}
+        />
+        <AddEditDeleteParametr
+          title={"RODZAJE"}
+          itemsList={this.state.rodzaje}
+        />
+        <AddEditDeleteParametr
+          title={"POMIESZCZENIA"}
+          itemsList={this.state.pomieszczenia}
+        />
       </div>
     );
   }
