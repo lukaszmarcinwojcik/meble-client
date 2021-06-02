@@ -21,9 +21,10 @@ class LoginPanel extends React.Component {
           <Login
             handleLogout={this.props.handleLogout}
             islogged={this.props.islogged}
-            loginMessage={this.props.loginMessage}
+            message={this.props.message}
+            errorsList={this.props.errorsList}
             handleShowLoginPanel={this.props.handleShowLoginPanel}
-            username={this.props.username}
+            email={this.props.email}
             password={this.props.password}
             handleLoginChange={this.props.handleLoginChange}
             handleLoginSubmit={this.props.handleLoginSubmit}

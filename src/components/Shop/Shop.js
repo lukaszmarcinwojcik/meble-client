@@ -36,6 +36,7 @@ class Shop extends React.Component {
       })
       .then((response) => response.json())
       .then((data) => {
+        console.log("pobrane meble do meble list:", data.data);
         this.setState({
           meble: data.data,
         });

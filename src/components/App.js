@@ -12,10 +12,11 @@ import LoginPanel from "./LoginPanel/LoginPanel";
 class App extends Component {
   state = {
     islogged: false,
-    loginMessage: null,
+    message: null,
+    errorsList: "",
     isActiveLogPanel: false,
     accessLevel: 0,
-    username: "",
+    email: "",
     password: "",
   };
 
@@ -38,10 +39,10 @@ class App extends Component {
   handleLoginSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/login", {
+    fetch("http://localhost:5000/users/login", {
       method: "POST",
       body: JSON.stringify({
-        login: this.state.username,
+        email: this.state.email,
         password: this.state.password,
       }),
       headers: {
@@ -50,20 +51,19 @@ class App extends Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        console.log("bledy z logowania:", data.errors);
         this.setState({
-          loginMessage: data.loginMessage,
+          errorsList: data.errors,
+          message: data.message,
           islogged: data.islogged,
           accessLevel: data.accessLevel,
+          email: data.email,
+          password: "",
         });
       });
-    this.setState({
-      username: "",
-      password: "",
-    });
   };
   handleLogout = () => {
-    fetch("http://localhost:5000/logout")
+    fetch("http://localhost:5000/users/logout")
       .then((response) => {
         if (response.ok) {
           return response;
@@ -73,7 +73,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-          loginMessage: data.loginMessage,
+          message: data.message,
           islogged: data.islogged,
           accessLevel: data.accessLevel,
         });
@@ -93,9 +93,10 @@ class App extends Component {
           <LoginPanel
             handleLogout={this.handleLogout}
             islogged={this.state.islogged}
-            loginMessage={this.state.loginMessage}
+            message={this.state.message}
+            errorsList={this.state.errorsList}
             handleShowLoginPanel={this.handleShowLoginPanel}
-            username={this.state.username}
+            email={this.state.email}
             password={this.state.password}
             handleLoginChange={this.handleLoginChange}
             handleLoginSubmit={this.handleLoginSubmit}

@@ -1,12 +1,21 @@
 import React from "react";
 // import "./DeleteEditProdukt.css";
 
+const ErrorsList = (props) => {
+  let errorsList = props.errorsList.map((error) => (
+    <p className={"error"} key={error.message}>
+      {error.message}
+    </p>
+  ));
+  return errorsList;
+};
+
 class Login extends React.Component {
   state = {};
   render() {
     const formlogout = (
       <div>
-        <h2>Jestes zalogowany jako administrator</h2>
+        <h2>Jestes zalogowany </h2>
         <button
           className={"btnform"}
           type={"submit"}
@@ -24,14 +33,14 @@ class Login extends React.Component {
             Zarejestruj się
           </span>
         </h2>
-        <label className={"loginlabel"} htmlFor="user">
-          Wprowadz login:
+        <label className={"loginlabel"} htmlFor="email">
+          Wprowadz email:
           <input
             className={"logPanel"}
-            type="text"
-            id="user"
-            name="username"
-            value={this.props.username}
+            type="email"
+            id="email"
+            name="email"
+            value={this.props.email}
             onChange={this.props.handleLoginChange}
           />
         </label>
@@ -54,13 +63,15 @@ class Login extends React.Component {
       </form>
     );
     return (
-      // <div isactive={this.props.isactive}>
       <div>
         {this.props.islogged ? formlogout : formlog}
         <button className={"btnform"} onClick={this.props.handleShowLoginPanel}>
           Zamknij
         </button>
-        <h2 className={"msg"}>{this.props.loginMessage}</h2>
+        <h2 className={"msg"}>{this.props.message}</h2>
+        {this.props.errorsList ? (
+          <ErrorsList errorsList={this.props.errorsList} />
+        ) : null}
       </div>
     );
   }
