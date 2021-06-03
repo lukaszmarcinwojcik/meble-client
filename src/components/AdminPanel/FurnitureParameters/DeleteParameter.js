@@ -1,15 +1,15 @@
 import React from "react";
-import "./EditParametr.css";
+import "./DeleteParameter.css";
 
 // const listaKolekcji = "http://localhost:5000/listaKolekcji";
 // const listaMaterialow = "http://localhost:5000/listaMaterialow";
 // const listaPomieszczen = "http://localhost:5000/listaPomieszczen";
 // const listaRodzajow = "http://localhost:5000/listaRodzajow";
 
-class EditParametr extends React.Component {
+class DeleteParameter extends React.Component {
   state = {};
   render() {
-    let itemsList = [{ _id: -1, nazwa: "wubierz" }].concat(
+    let itemsList = [{ _id: -1, nazwa: "wybierz" }].concat(
       this.props.itemsList
     );
     itemsList = itemsList.map((item) => (
@@ -19,11 +19,13 @@ class EditParametr extends React.Component {
     ));
     return (
       <div>
-        <label>EDYTUJ</label>
+        <label>USUN</label>
         <select className={"selectfilterPanel"}>{itemsList}</select>
-        <input className={"adminpanelbtn"} type={"text"}></input>
-        <button className={"adminpanelbtn"}>EDYTUJ</button>
-        <button className={"adminpanelbtn"} onClick={this.props.showEditPanel}>
+        <button className={"adminpanelbtn"}>USUN</button>
+        <button
+          className={"adminpanelbtn"}
+          onClick={this.props.showDeletePanel}
+        >
           ANULUJ
         </button>
       </div>
@@ -31,4 +33,4 @@ class EditParametr extends React.Component {
   }
 }
 
-export default EditParametr;
+export default DeleteParameter;

@@ -1,7 +1,7 @@
 import React from "react";
-import "./DeleteEditProdukt.css";
+import "./DeleteEditProduct.css";
 
-class DeleteEditProdukt extends React.Component {
+class DeleteEditProduct extends React.Component {
   state = {};
 
   render() {
@@ -14,4 +14,4 @@ class DeleteEditProdukt extends React.Component {
   }
 }
 
-export default DeleteEditProdukt;
+export default DeleteEditProduct;

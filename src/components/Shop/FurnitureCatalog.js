@@ -1,15 +1,15 @@
 import React from "react";
-import "./MebleList.css";
-import AddProdukt from "../AdminPanel/AddProdukt";
-import EdytujParametry from "../AdminPanel/EdytujParametry";
-import DeleteEditProdukt from "../AdminPanel/DeleteEditProdukt";
+import "./FurnitureCatalog.css";
+import AddProduct from "../AdminPanel/AddProduct";
+import EditParameters from "../AdminPanel/EditParameters";
+import DeleteEditProduct from "../AdminPanel/DeleteEditProduct";
 
-class MebleList extends React.Component {
+class FurnitureCatalog extends React.Component {
   state = {
-    edytujParametryIsActive: false,
-    addProduktPanelIsActive: false,
+    editParametersIsActive: false,
+    addProductPanelIsActive: false,
   };
-  showAddProduktPanel = (e) => {
+  showAddProductPanel = (e) => {
     console.log("status paneluADD: ", !this.state.addProduktPanelIsActive);
     this.setState({
       addProduktPanelIsActive: !this.state.addProduktPanelIsActive,
@@ -17,7 +17,7 @@ class MebleList extends React.Component {
     });
   };
 
-  showEdytujParametry = (e) => {
+  showEditParameters = (e) => {
     console.log("status paneluEDIT: ", !this.state.edytujParametryIsActive);
     this.setState({
       edytujParametryIsActive: !this.state.edytujParametryIsActive,
@@ -64,7 +64,7 @@ class MebleList extends React.Component {
             
           /> */}
         </div>
-        {this.props.accessLevel === 3 ? <DeleteEditProdukt /> : null}
+        {this.props.accessLevel === 3 ? <DeleteEditProduct /> : null}
       </div>
     ));
     return (
@@ -74,12 +74,12 @@ class MebleList extends React.Component {
           <h2 onClick={this.props.handleShowCart}>Przejdz do koszyka</h2>
           {this.props.accessLevel === 3 ? dodajNowyMebel : null}
           {this.props.accessLevel === 3 ? edytujParametry : null}
-          {this.state.addProduktPanelIsActive ? (
-            <AddProdukt showAddProduktPanel={this.state.showAddProduktPanel} />
+          {this.state.addProductPanelIsActive ? (
+            <AddProduct showAddProductPanel={this.state.showAddProductPanel} />
           ) : null}
-          {this.state.edytujParametryIsActive ? (
-            <EdytujParametry
-              showEdytujParametry={this.state.showEdytujParametry}
+          {this.state.editParametersIsActive ? (
+            <EditParameters
+              showEditParameters={this.state.showEditParameters}
             />
           ) : null}
         </div>
@@ -89,4 +89,4 @@ class MebleList extends React.Component {
   }
 }
 
-export default MebleList;
+export default FurnitureCatalog;

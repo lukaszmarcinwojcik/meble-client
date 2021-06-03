@@ -1,15 +1,15 @@
 import React from "react";
-import "./AddEditDeleteParametr.css";
-import AddParametr from "./AddParametr";
-import EditParametr from "./EditParametr";
-import DeleteParametr from "./DeleteParametr";
+import "./AddEditDeleteParameter.css";
+import AddParameter from "./AddParameter";
+import EditParameter from "./EditParameter";
+import DeleteParameter from "./DeleteParameter";
 
 // const listaKolekcji = "http://localhost:5000/listaKolekcji";
 // const listaMaterialow = "http://localhost:5000/listaMaterialow";
 // const listaPomieszczen = "http://localhost:5000/listaPomieszczen";
 // const listaRodzajow = "http://localhost:5000/listaRodzajow";
 
-class AddEditDeleteParametr extends React.Component {
+class AddEditDeleteParameter extends React.Component {
   state = { isActiveAdd: false, isActiveDelete: false, isActiveEdit: false };
 
   showAddPanel = (e) => {
@@ -48,16 +48,16 @@ class AddEditDeleteParametr extends React.Component {
           EDYTUJ
         </button>
         {this.state.isActiveAdd ? (
-          <AddParametr showAddPanel={this.showAddPanel} />
+          <AddParameter showAddPanel={this.showAddPanel} />
         ) : null}
         {this.state.isActiveDelete ? (
-          <DeleteParametr
+          <DeleteParameter
             itemsList={this.props.itemsList}
             showDeletePanel={this.showDeletePanel}
           />
         ) : null}
         {this.state.isActiveEdit ? (
-          <EditParametr
+          <EditParameter
             itemsList={this.props.itemsList}
             showEditPanel={this.showEditPanel}
           />
@@ -67,4 +67,4 @@ class AddEditDeleteParametr extends React.Component {
   }
 }
 
-export default AddEditDeleteParametr;
+export default AddEditDeleteParameter;

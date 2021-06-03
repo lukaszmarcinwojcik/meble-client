@@ -1,5 +1,5 @@
 import React from "react";
-import "./AddProdukt.css";
+import "./AddProduct.css";
 
 // const listaProduktow = "http://localhost:5000/listaProduktow";
 const listaKolekcji = "http://localhost:5000/listaKolekcji";
@@ -7,7 +7,7 @@ const listaMaterialow = "http://localhost:5000/listaMaterialow";
 const listaPomieszczen = "http://localhost:5000/listaPomieszczen";
 const listaRodzajow = "http://localhost:5000/listaRodzajow";
 
-class AddProdukt extends React.Component {
+class AddProduct extends React.Component {
   state = {
     kolekcje: [],
     materialy: [],
@@ -20,22 +20,6 @@ class AddProdukt extends React.Component {
     rodzaj: "",
     nazwapliku: "",
   };
-  // getMebleList = () => {
-  //   fetch(listaProduktow)
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response;
-  //       }
-  //       throw Error(response.status);
-  //     })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       this.setState({
-  //         meble: data.data,
-  //       });
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
 
   getKolekcjeList = () => {
     fetch(listaKolekcji)
@@ -266,4 +250,4 @@ class AddProdukt extends React.Component {
   }
 }
 
-export default AddProdukt;
+export default AddProduct;

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Shop.css";
-import MebleFilteringPanel from "./MebleFilteringPanel";
-import MebleList from "./MebleList";
+import FurnitureFilterPanel from "./FurnitureFilterPanel";
+import FurnitureCatalog from "./FurnitureCatalog";
 import Cart from "./Cart";
 
 const API = "http://localhost:5000/";
@@ -178,7 +178,7 @@ class Shop extends React.Component {
       <section id="shop" className={"shop"}>
         {this.state.isActiveCatalog ? (
           <section className={"catalog"}>
-            <MebleFilteringPanel
+            <FurnitureFilterPanel
               kolekcja={this.state.kolekcja}
               material={this.state.material}
               pomieszczenie={this.state.pomieszczenie}
@@ -192,7 +192,7 @@ class Shop extends React.Component {
               handleDeleteFilters={this.handleDeleteFilters}
               accessLevel={this.props.accessLevel}
             />
-            <MebleList
+            <FurnitureCatalog
               handleShowCart={this.handleShowCart}
               meble={this.state.meble}
               accessLevel={this.props.accessLevel}

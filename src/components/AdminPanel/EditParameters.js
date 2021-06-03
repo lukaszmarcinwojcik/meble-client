@@ -1,13 +1,13 @@
 import React from "react";
-import "./EdytujParametry.css";
-import AddEditDeleteParametr from "./ParemetryMebli/AddEditDeleteParametr";
+import "./EditParameters.css";
+import AddEditDeleteParameter from "./FurnitureParameters/AddEditDeleteParameter";
 
 const listaKolekcji = "http://localhost:5000/listaKolekcji";
 const listaMaterialow = "http://localhost:5000/listaMaterialow";
 const listaPomieszczen = "http://localhost:5000/listaPomieszczen";
 const listaRodzajow = "http://localhost:5000/listaRodzajow";
 
-class EdytujParametry extends React.Component {
+class EditParameters extends React.Component {
   state = {
     isActiveKolekcjaAdd: false,
     isActiveKolekcjaDelete: false,
@@ -108,19 +108,19 @@ class EdytujParametry extends React.Component {
         <div className={"paneloption"}>
           <h2>Panel edycji parametrow mebli</h2>
         </div>
-        <AddEditDeleteParametr
+        <AddEditDeleteParameter
           title={"KOLEKCJE"}
           itemsList={this.state.kolekcje}
         />
-        <AddEditDeleteParametr
+        <AddEditDeleteParameter
           title={"MATERIALY"}
           itemsList={this.state.materialy}
         />
-        <AddEditDeleteParametr
+        <AddEditDeleteParameter
           title={"RODZAJE"}
           itemsList={this.state.rodzaje}
         />
-        <AddEditDeleteParametr
+        <AddEditDeleteParameter
           title={"POMIESZCZENIA"}
           itemsList={this.state.pomieszczenia}
         />
@@ -129,4 +129,4 @@ class EdytujParametry extends React.Component {
   }
 }
 
-export default EdytujParametry;
+export default EditParameters;

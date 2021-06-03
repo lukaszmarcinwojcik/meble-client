@@ -1,7 +1,7 @@
 import React from "react";
-import "./MebleFilteringPanel.css";
+import "./FurnitureFilterPanel.css";
 
-class MebleFilteringPanel extends React.Component {
+class FurnitureFilterPanel extends React.Component {
   state = {};
 
   render() {
@@ -102,4 +102,4 @@ class MebleFilteringPanel extends React.Component {
   }
 }
 
-export default MebleFilteringPanel;
+export default FurnitureFilterPanel;

@@ -5,7 +5,7 @@ import Sliders from "./Sliders/Sliders";
 import Footer from "./Footer/Footer";
 import Blog from "./Blog/Blog";
 import Newsletter from "./Newsletter/Newsletter";
-import AboutUs from "./AboutUS/AboutUs";
+import AboutUs from "./AboutUs/AboutUs";
 import Shop from "./Shop/Shop";
 import LoginPanel from "./LoginPanel/LoginPanel";
 
