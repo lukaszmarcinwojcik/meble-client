@@ -48,18 +48,28 @@ class AddEditDeleteParameter extends React.Component {
           EDYTUJ
         </button>
         {this.state.isActiveAdd ? (
-          <AddParameter showAddPanel={this.showAddPanel} />
+          <AddParameter
+            parameterName={this.props.parameterName}
+            handleAddParameter={this.props.handleAddParameter}
+            title={this.props.title}
+            showAddPanel={this.showAddPanel}
+            updateParameters={this.props.updateParameters}
+          />
         ) : null}
         {this.state.isActiveDelete ? (
           <DeleteParameter
+            parameterName={this.props.parameterName}
             itemsList={this.props.itemsList}
             showDeletePanel={this.showDeletePanel}
+            updateParameters={this.props.updateParameters}
           />
         ) : null}
         {this.state.isActiveEdit ? (
           <EditParameter
+            parameterName={this.props.parameterName}
             itemsList={this.props.itemsList}
             showEditPanel={this.showEditPanel}
+            updateParameters={this.props.updateParameters}
           />
         ) : null}
       </div>

@@ -11,11 +11,11 @@ import LoginPanel from "./LoginPanel/LoginPanel";
 
 class App extends Component {
   state = {
-    islogged: false,
+    islogged: true,
     message: null,
     errorsList: "",
     isActiveLogPanel: false,
-    accessLevel: 0,
+    accessLevel: 3,
     email: "",
     password: "",
   };

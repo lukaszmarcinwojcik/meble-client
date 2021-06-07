@@ -10,51 +10,51 @@ class FurnitureCatalog extends React.Component {
     addProductPanelIsActive: false,
   };
   showAddProductPanel = (e) => {
-    console.log("status paneluADD: ", !this.state.addProduktPanelIsActive);
+    console.log("status paneluADD: ", !this.state.addProductPanelIsActive);
     this.setState({
-      addProduktPanelIsActive: !this.state.addProduktPanelIsActive,
-      edytujParametryIsActive: false,
+      addProductPanelIsActive: !this.state.addProductPanelIsActive,
+      editParametersIsActive: false,
     });
   };
 
   showEditParameters = (e) => {
-    console.log("status paneluEDIT: ", !this.state.edytujParametryIsActive);
+    console.log("status paneluEDIT: ", !this.state.editParametersIsActive);
     this.setState({
-      edytujParametryIsActive: !this.state.edytujParametryIsActive,
-      addProduktPanelIsActive: false,
+      editParametersIsActive: !this.state.editParametersIsActive,
+      addProductPanelIsActive: false,
     });
   };
 
   render() {
     const dodajNowyMebel = (
-      <button onClick={this.showAddProduktPanel} className={"addNewMebel"}>
+      <button onClick={this.showAddProductPanel} className={"addNewMebel"}>
         DODAJ NOWY PRODUKT
       </button>
     );
 
     const edytujParametry = (
-      <button onClick={this.showEdytujParametry} className={"addNewMebel"}>
+      <button onClick={this.showEditParameters} className={"addNewMebel"}>
         EDYTUJ PARAMETRY MEBLI
       </button>
     );
 
-    const meble = this.props.meble.map((mebel) => (
-      <div className={"mebel"} key={mebel._id}>
-        <h2 className={"mebeltitle"}>{`${mebel.nazwa}`}</h2>
+    const meble = this.props.productList.map((product) => (
+      <div className={"mebel"} key={product._id}>
+        <h2 className={"mebeltitle"}>{`${product.name}`}</h2>
         <div className={"mebleDescription"}>
           <p>
             {"kolekcja: "}
-            <span>{mebel.kolekcja}</span>
+            <span>{product.furnitureCollection}</span>
           </p>
           <p>
             {"materiał: "}
-            <span>{mebel.material}</span>
+            <span>{product.material}</span>
           </p>
           <p>
             {"pomieszczenie: "}
-            <span>{mebel.pomieszczenie}</span>
+            <span>{product.room}</span>
           </p>
-          <p>{`${mebel.date}`}</p>
+          <p>{`${product.date}`}</p>
         </div>
         <div className={"mebelImg"}>
           {/* <img

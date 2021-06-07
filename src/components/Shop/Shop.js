@@ -5,29 +5,29 @@ import FurnitureCatalog from "./FurnitureCatalog";
 import Cart from "./Cart";
 
 const API = "http://localhost:5000/";
-const listaProduktow = "http://localhost:5000/listaProduktow";
-const listaKolekcji = "http://localhost:5000/listaKolekcji";
-const listaMaterialow = "http://localhost:5000/listaMaterialow";
-const listaPomieszczen = "http://localhost:5000/listaPomieszczen";
-const listaRodzajow = "http://localhost:5000/listaRodzajow";
+const productList = "http://localhost:5000/productList";
+const collectionList = "http://localhost:5000/collectionList";
+const materialList = "http://localhost:5000/materialList";
+const roomList = "http://localhost:5000/roomList";
+const typeList = "http://localhost:5000/typeList";
 
 class Shop extends React.Component {
   state = {
     isActiveCatalog: true,
     isActiveCart: false,
-    meble: [],
-    kolekcje: [],
-    materialy: [],
-    pomieszczenia: [],
-    rodzaje: [],
-    kolekcja: "",
-    material: "",
-    pomieszczenie: "",
-    rodzaj: "",
+    productList: [],
+    collectionList: [],
+    materialList: [],
+    roomList: [],
+    typeList: [],
+    activeCollection: "",
+    activeMaterial: "",
+    activeRoom: "",
+    activeType: "",
   };
 
-  getMebleList = () => {
-    fetch(listaProduktow)
+  getProductList = () => {
+    fetch(productList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -35,17 +35,17 @@ class Shop extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrane meble do meble list:", data.data);
+      .then((productList) => {
+        console.log("pobrane meble do meble list:", productList);
         this.setState({
-          meble: data.data,
+          productList: productList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  getKolekcjeList = () => {
-    fetch(listaKolekcji)
+  getCollectionList = () => {
+    fetch(collectionList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -53,17 +53,17 @@ class Shop extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((collectionList) => {
+        console.log("pobrano: ", collectionList);
         this.setState({
-          kolekcje: data.data,
+          collectionList: collectionList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  getMaterialyList = () => {
-    fetch(listaMaterialow)
+  getMaterialList = () => {
+    fetch(materialList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -71,17 +71,17 @@ class Shop extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((materialList) => {
+        console.log("pobrano: ", materialList);
         this.setState({
-          materialy: data.data,
+          materialList: materialList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  getPomieszczeniaList = () => {
-    fetch(listaPomieszczen)
+  getRoomList = () => {
+    fetch(roomList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -89,17 +89,17 @@ class Shop extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((roomList) => {
+        console.log("pobrano: ", roomList);
         this.setState({
-          pomieszczenia: data.data,
+          roomList: roomList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  getRodzajeList = () => {
-    fetch(listaRodzajow)
+  getTypeList = () => {
+    fetch(typeList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -107,21 +107,21 @@ class Shop extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((typeList) => {
+        console.log("pobrano: ", typeList);
         this.setState({
-          rodzaje: data.data,
+          typeList: typeList,
         });
       })
       .catch((error) => console.log(error));
   };
 
   componentDidMount() {
-    this.getMebleList();
-    this.getKolekcjeList();
-    this.getMaterialyList();
-    this.getPomieszczeniaList();
-    this.getRodzajeList();
+    this.getProductList();
+    this.getCollectionList();
+    this.getMaterialList();
+    this.getRoomList();
+    this.getTypeList();
   }
 
   postMebleList = (reqOptions) => {
@@ -129,25 +129,26 @@ class Shop extends React.Component {
     const url = API + reqOptions;
     fetch(url, { method: "GET" })
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data.title, data.data);
+      .then((productList) => {
+        console.log(productList);
         this.setState({
-          meble: data.data,
+          productList: productList,
         });
       });
   };
 
   handleDeleteFilters = () => {
-    this.getMebleList();
+    this.getProductList();
 
     this.setState({
-      kolekcja: "",
-      material: "",
-      pomieszczenie: "",
-      rodzaj: "",
+      activeCollection: "",
+      activeMaterial: "",
+      activeRoom: "",
+      activeType: "",
     });
   };
   handleFilteringChange = (e) => {
+    console.log(e.target.value, e.target.name);
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -157,8 +158,10 @@ class Shop extends React.Component {
 
   handleFilteringSubmit = (e) => {
     e.preventDefault();
-    const { kolekcja, material, pomieszczenie, rodzaj } = this.state;
-    var reqOptions = `filtruj?kolekcja=${kolekcja}&material=${material}&pomieszczenie=${pomieszczenie}&rodzaj=${rodzaj}`;
+    const { activeCollection, activeMaterial, activeRoom, activeType } =
+      this.state;
+    var reqOptions = `filter?collection=${activeCollection}&material=${activeMaterial}&room=${activeRoom}&type=${activeType}`;
+    console.log("req option w handle filtr panel", reqOptions);
     this.postMebleList(reqOptions);
   };
   handleShowCatalog = () => {
@@ -179,14 +182,14 @@ class Shop extends React.Component {
         {this.state.isActiveCatalog ? (
           <section className={"catalog"}>
             <FurnitureFilterPanel
-              kolekcja={this.state.kolekcja}
-              material={this.state.material}
-              pomieszczenie={this.state.pomieszczenie}
-              rodzaj={this.state.rodzaj}
-              kolekcje={this.state.kolekcje}
-              materialy={this.state.materialy}
-              pomieszczenia={this.state.pomieszczenia}
-              rodzaje={this.state.rodzaje}
+              activeCollection={this.state.activeCollection}
+              activeMaterial={this.state.activeMaterial}
+              activeRoom={this.state.activeRoom}
+              activeType={this.state.activeType}
+              collectionList={this.state.collectionList}
+              materialList={this.state.materialList}
+              roomList={this.state.roomList}
+              typeList={this.state.typeList}
               handleFilteringSubmit={this.handleFilteringSubmit}
               handleFilteringChange={this.handleFilteringChange}
               handleDeleteFilters={this.handleDeleteFilters}
@@ -194,7 +197,7 @@ class Shop extends React.Component {
             />
             <FurnitureCatalog
               handleShowCart={this.handleShowCart}
-              meble={this.state.meble}
+              productList={this.state.productList}
               accessLevel={this.props.accessLevel}
             />
           </section>

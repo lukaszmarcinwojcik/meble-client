@@ -2,28 +2,25 @@ import React from "react";
 import "./EditParameters.css";
 import AddEditDeleteParameter from "./FurnitureParameters/AddEditDeleteParameter";
 
-const listaKolekcji = "http://localhost:5000/listaKolekcji";
-const listaMaterialow = "http://localhost:5000/listaMaterialow";
-const listaPomieszczen = "http://localhost:5000/listaPomieszczen";
-const listaRodzajow = "http://localhost:5000/listaRodzajow";
+// const API = "http://localhost:5000/";
+const collectionList = "http://localhost:5000/collectionList";
+const materialList = "http://localhost:5000/materialList";
+const roomList = "http://localhost:5000/roomList";
+const typeList = "http://localhost:5000/typeList";
 
 class EditParameters extends React.Component {
   state = {
     isActiveKolekcjaAdd: false,
     isActiveKolekcjaDelete: false,
     isActiveKolekcjaEdit: false,
-    kolekcje: [],
-    materialy: [],
-    pomieszczenia: [],
-    rodzaje: [],
-    kolekcja: "",
-    material: "",
-    pomieszczenie: "",
-    rodzaj: "",
+    collectionList: [],
+    materialList: [],
+    roomList: [],
+    typeList: [],
   };
 
-  getKolekcjeList = () => {
-    fetch(listaKolekcji)
+  getCollectionList = () => {
+    fetch(collectionList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -31,17 +28,17 @@ class EditParameters extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((collectionList) => {
+        console.log("pobrano: ", collectionList);
         this.setState({
-          kolekcje: data.data,
+          collectionList: collectionList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  getMaterialyList = () => {
-    fetch(listaMaterialow)
+  getMaterialList = () => {
+    fetch(materialList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -49,17 +46,17 @@ class EditParameters extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((materialList) => {
+        console.log("pobrano: ", materialList);
         this.setState({
-          materialy: data.data,
+          materialList: materialList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  getPomieszczeniaList = () => {
-    fetch(listaPomieszczen)
+  getRoomList = () => {
+    fetch(roomList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -67,17 +64,17 @@ class EditParameters extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((roomList) => {
+        console.log("pobrano: ", roomList);
         this.setState({
-          pomieszczenia: data.data,
+          roomList: roomList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  getRodzajeList = () => {
-    fetch(listaRodzajow)
+  getTypeList = () => {
+    fetch(typeList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -85,22 +82,33 @@ class EditParameters extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((typeList) => {
+        console.log("pobrano: ", typeList);
         this.setState({
-          rodzaje: data.data,
+          typeList: typeList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  componentDidMount = () => {
-    // this.getMebleList();
-    this.getKolekcjeList();
-    this.getMaterialyList();
-    this.getPomieszczeniaList();
-    this.getRodzajeList();
+  handleParameterChange = (e) => {
+    console.log("parametr: ", e.target.name);
+    console.log("wartosc: ", e.target.value);
+    //////////////////////////
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({
+      [name]: value,
+    });
   };
+
+  componentDidMount() {
+    // this.getProductList();
+    this.getCollectionList();
+    this.getMaterialList();
+    this.getRoomList();
+    this.getTypeList();
+  }
 
   render() {
     return (
@@ -110,19 +118,27 @@ class EditParameters extends React.Component {
         </div>
         <AddEditDeleteParameter
           title={"KOLEKCJE"}
-          itemsList={this.state.kolekcje}
+          parameterName={"collection"}
+          itemsList={this.state.collectionList}
+          updateParameters={this.getCollectionList}
         />
         <AddEditDeleteParameter
           title={"MATERIALY"}
-          itemsList={this.state.materialy}
+          parameterName={"material"}
+          itemsList={this.state.materialList}
+          updateParameters={this.getMaterialList}
         />
         <AddEditDeleteParameter
           title={"RODZAJE"}
-          itemsList={this.state.rodzaje}
+          parameterName={"type"}
+          itemsList={this.state.typeList}
+          updateParameters={this.getTypeList}
         />
         <AddEditDeleteParameter
           title={"POMIESZCZENIA"}
-          itemsList={this.state.pomieszczenia}
+          parameterName={"room"}
+          itemsList={this.state.roomList}
+          updateParameters={this.getRoomList}
         />
       </div>
     );

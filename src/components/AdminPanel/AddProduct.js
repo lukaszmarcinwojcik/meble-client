@@ -1,28 +1,27 @@
 import React from "react";
 import "./AddProduct.css";
 
-// const listaProduktow = "http://localhost:5000/listaProduktow";
-const listaKolekcji = "http://localhost:5000/listaKolekcji";
-const listaMaterialow = "http://localhost:5000/listaMaterialow";
-const listaPomieszczen = "http://localhost:5000/listaPomieszczen";
-const listaRodzajow = "http://localhost:5000/listaRodzajow";
+const collectionList = "http://localhost:5000/collectionList";
+const materialList = "http://localhost:5000/materialList";
+const roomList = "http://localhost:5000/roomList";
+const typeList = "http://localhost:5000/typeList";
 
 class AddProduct extends React.Component {
   state = {
-    kolekcje: [],
-    materialy: [],
-    pomieszczenia: [],
-    rodzaje: [],
-    nazwa: "",
-    kolekcja: "",
-    material: "",
-    pomieszczenie: "",
-    rodzaj: "",
-    nazwapliku: "",
+    collectionList: [],
+    materialList: [],
+    roomList: [],
+    typeList: [],
+    activeName: "",
+    activeCollection: "",
+    activeMaterial: "",
+    activeRoom: "",
+    activeType: "",
+    activeFilename: "",
   };
 
-  getKolekcjeList = () => {
-    fetch(listaKolekcji)
+  getCollectionList = () => {
+    fetch(collectionList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -30,17 +29,17 @@ class AddProduct extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((collectionList) => {
+        console.log("pobrano: ", collectionList);
         this.setState({
-          kolekcje: data.data,
+          collectionList: collectionList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  getMaterialyList = () => {
-    fetch(listaMaterialow)
+  getMaterialList = () => {
+    fetch(materialList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -48,17 +47,17 @@ class AddProduct extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((materialList) => {
+        console.log("pobrano: ", materialList);
         this.setState({
-          materialy: data.data,
+          materialList: materialList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  getPomieszczeniaList = () => {
-    fetch(listaPomieszczen)
+  getRoomList = () => {
+    fetch(roomList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -66,17 +65,17 @@ class AddProduct extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((roomList) => {
+        console.log("pobrano: ", roomList);
         this.setState({
-          pomieszczenia: data.data,
+          roomList: roomList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  getRodzajeList = () => {
-    fetch(listaRodzajow)
+  getTypeList = () => {
+    fetch(typeList)
       .then((response) => {
         if (response.ok) {
           return response;
@@ -84,24 +83,26 @@ class AddProduct extends React.Component {
         throw Error(response.status);
       })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("pobrano: ", data.title, data.data);
+      .then((typeList) => {
+        console.log("pobrano: ", typeList);
         this.setState({
-          rodzaje: data.data,
+          typeList: typeList,
         });
       })
       .catch((error) => console.log(error));
   };
 
-  componentDidMount = () => {
-    // this.getMebleList();
-    this.getKolekcjeList();
-    this.getMaterialyList();
-    this.getPomieszczeniaList();
-    this.getRodzajeList();
-  };
+  componentDidMount() {
+    // this.getProductList();
+    this.getCollectionList();
+    this.getMaterialList();
+    this.getRoomList();
+    this.getTypeList();
+  }
 
   handleFilteringChange = (e) => {
+    console.log("jakie okno", e.target.name);
+    console.log("jaka wartosc", e.target.value);
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -111,17 +112,23 @@ class AddProduct extends React.Component {
 
   handleAddProdukt = (e) => {
     e.preventDefault();
-    const { nazwa, kolekcja, material, pomieszczenie, rodzaj, nazwapliku } =
-      this.state;
+    const {
+      activeName,
+      activeCollection,
+      activeMaterial,
+      activeRoom,
+      activeType,
+      activeFilename,
+    } = this.state;
     fetch("http://localhost:5000/admin/add", {
       method: "POST",
       body: JSON.stringify({
-        nazwa: nazwa,
-        rodzaj: rodzaj,
-        kolekcja: kolekcja,
-        material: material,
-        pomieszczenie: pomieszczenie,
-        nazwapliku: nazwapliku,
+        name: activeName,
+        type: activeType,
+        furnitureCollection: activeCollection,
+        material: activeMaterial,
+        room: activeRoom,
+        filename: activeFilename,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -140,32 +147,34 @@ class AddProduct extends React.Component {
     //////////////////////////////////////////////////////
   };
   render() {
-    let kolekcje = [{ _id: -1, nazwa: "wybierz" }].concat(this.state.kolekcje);
-    kolekcje = kolekcje.map((kolekcja) => (
-      <option key={kolekcja._id} value={kolekcja.nazwa}>
-        {kolekcja.nazwa}
+    let kolekcje = [{ _id: -1, name: "wybierz" }].concat(
+      this.state.collectionList
+    );
+    kolekcje = kolekcje.map((collection) => (
+      <option key={collection._id} value={collection.name}>
+        {collection.name}
       </option>
     ));
-    let materialy = [{ _id: -1, nazwa: "wybierz" }].concat(
-      this.state.materialy
+    let materialy = [{ _id: -1, name: "wybierz" }].concat(
+      this.state.materialList
     );
     materialy = materialy.map((material) => (
-      <option key={material._id} value={material.nazwa}>
-        {material.nazwa}
+      <option key={material._id} value={material.name}>
+        {material.name}
       </option>
     ));
-    let pomieszczenia = [{ _id: -1, nazwa: "wybierz" }].concat(
-      this.state.pomieszczenia
+    let pomieszczenia = [{ _id: -1, name: "wybierz" }].concat(
+      this.state.roomList
     );
-    pomieszczenia = pomieszczenia.map((pomieszczenie) => (
-      <option key={pomieszczenie._id} value={pomieszczenie.nazwa}>
-        {pomieszczenie.nazwa}
+    pomieszczenia = pomieszczenia.map((room) => (
+      <option key={room._id} value={room.name}>
+        {room.name}
       </option>
     ));
-    let rodzaje = [{ _id: -1, nazwa: "wybierz" }].concat(this.state.rodzaje);
-    rodzaje = rodzaje.map((rodzaj) => (
-      <option key={rodzaj._id} value={rodzaj.nazwa}>
-        {rodzaj.nazwa}
+    let rodzaje = [{ _id: -1, name: "wybierz" }].concat(this.state.typeList);
+    rodzaje = rodzaje.map((type) => (
+      <option key={type._id} value={type.name}>
+        {type.name}
       </option>
     ));
     return (
@@ -175,21 +184,21 @@ class AddProduct extends React.Component {
         </div>
         <div>
           <div className={"paneloption"}>
-            <label htmlFor="nazwa">Podaj nazwę: </label>
+            <label htmlFor="activeName">Podaj nazwę: </label>
             <input
               className={"addProduktinput"}
               type={"text"}
-              value={this.props.nazwa}
-              name={"nazwa"}
+              value={this.state.activeName}
+              name={"activeName"}
               onChange={this.handleFilteringChange}
             ></input>
           </div>
           <div className={"paneloption"}>
-            <label htmlFor="kolekcja">Wybierz kolekcje: </label>
+            <label htmlFor="activeCollection">Wybierz kolekcje: </label>
             <select
               className={"selectAddProdukt"}
-              value={this.props.kolekcja}
-              name={"kolekcja"}
+              value={this.state.activeCollection}
+              name={"activeCollection"}
               onChange={this.handleFilteringChange}
             >
               {kolekcje}
@@ -197,45 +206,45 @@ class AddProduct extends React.Component {
           </div>
 
           <div className={"paneloption"}>
-            <label htmlFor="material">Wybierz material: </label>
+            <label htmlFor="activeMaterial">Wybierz material: </label>
             <select
               className={"selectAddProdukt"}
-              value={this.props.material}
-              name={"material"}
+              value={this.state.activeMaterial}
+              name={"activeMaterial"}
               onChange={this.handleFilteringChange}
             >
               {materialy}
             </select>
           </div>
           <div className={"paneloption"}>
-            <label htmlFor="pomieszczenie">Wybierz pomieszczenie: </label>
+            <label htmlFor="activeRoom">Wybierz pomieszczenie: </label>
             <select
               className={"selectAddProdukt"}
-              value={this.props.pomieszczenie}
-              name={"pomieszczenie"}
+              value={this.state.activeRoom}
+              name={"activeRoom"}
               onChange={this.handleFilteringChange}
             >
               {pomieszczenia}
             </select>
           </div>
           <div className={"paneloption"}>
-            <label htmlFor="rodzaj">Wybierz rodzaj: </label>
+            <label htmlFor="activeType">Wybierz rodzaj: </label>
             <select
               className={"selectAddProdukt"}
-              value={this.props.rodzaj}
-              name="rodzaj"
+              value={this.state.activeType}
+              name="activeType"
               onChange={this.handleFilteringChange}
             >
               {rodzaje}
             </select>
           </div>
           <div className={"paneloption"}>
-            <label htmlFor="nazwapliku">Wprowadz link do obrazu: </label>
+            <label htmlFor="activeFilename">Wprowadz link do obrazu: </label>
             <input
               className={"addProduktinput"}
               type={"text"}
-              value={this.props.nazwa}
-              name={"nazwapliku"}
+              value={this.state.activeFilename}
+              name={"activeFilename"}
               onChange={this.handleFilteringChange}
             ></input>
           </div>

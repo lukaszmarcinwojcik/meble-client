@@ -5,30 +5,28 @@ class FurnitureFilterPanel extends React.Component {
   state = {};
 
   render() {
-    let kolekcje = [{ _id: -1, nazwa: "" }].concat(this.props.kolekcje);
-    kolekcje = kolekcje.map((kolekcja) => (
-      <option key={kolekcja._id} value={kolekcja.nazwa}>
-        {kolekcja.nazwa}
+    let kolekcje = [{ _id: -1, name: "" }].concat(this.props.collectionList);
+    kolekcje = kolekcje.map((collection) => (
+      <option key={collection._id} value={collection.name}>
+        {collection.name}
       </option>
     ));
-    let materialy = [{ _id: -1, nazwa: "" }].concat(this.props.materialy);
+    let materialy = [{ _id: -1, name: "" }].concat(this.props.materialList);
     materialy = materialy.map((material) => (
-      <option key={material._id} value={material.nazwa}>
-        {material.nazwa}
+      <option key={material._id} value={material.name}>
+        {material.name}
       </option>
     ));
-    let pomieszczenia = [{ _id: -1, nazwa: "" }].concat(
-      this.props.pomieszczenia
-    );
-    pomieszczenia = pomieszczenia.map((pomieszczenie) => (
-      <option key={pomieszczenie._id} value={pomieszczenie.nazwa}>
-        {pomieszczenie.nazwa}
+    let pomieszczenia = [{ _id: -1, name: "" }].concat(this.props.roomList);
+    pomieszczenia = pomieszczenia.map((room) => (
+      <option key={room._id} value={room.name}>
+        {room.name}
       </option>
     ));
-    let rodzaje = [{ _id: -1, nazwa: "" }].concat(this.props.rodzaje);
-    rodzaje = rodzaje.map((rodzaj) => (
-      <option key={rodzaj._id} value={rodzaj.nazwa}>
-        {rodzaj.nazwa}
+    let rodzaje = [{ _id: -1, name: "" }].concat(this.props.typeList);
+    rodzaje = rodzaje.map((type) => (
+      <option key={type._id} value={type.name}>
+        {type.name}
       </option>
     ));
     return (
@@ -38,11 +36,11 @@ class FurnitureFilterPanel extends React.Component {
         </div>
         <div>
           <div className={"paneloption"}>
-            <label htmlFor="kolekcja">Wybierz kolekcje: </label>
+            <label htmlFor="activeCollection">Wybierz kolekcje: </label>
             <select
               className={"selectfilterPanel"}
-              value={this.props.kolekcja}
-              name={"kolekcja"}
+              value={this.props.activeCollection}
+              name={"activeCollection"}
               onChange={this.props.handleFilteringChange}
             >
               {kolekcje}
@@ -50,33 +48,33 @@ class FurnitureFilterPanel extends React.Component {
           </div>
 
           <div className={"paneloption"}>
-            <label htmlFor="material">Wybierz material: </label>
+            <label htmlFor="activeMaterial">Wybierz material: </label>
             <select
               className={"selectfilterPanel"}
-              value={this.props.material}
-              name={"material"}
+              value={this.props.activeMaterial}
+              name={"activeMaterial"}
               onChange={this.props.handleFilteringChange}
             >
               {materialy}
             </select>
           </div>
           <div className={"paneloption"}>
-            <label htmlFor="pomieszczenie">Wybierz pomieszczenie: </label>
+            <label htmlFor="activeRoom">Wybierz pomieszczenie: </label>
             <select
               className={"selectfilterPanel"}
-              value={this.props.pomieszczenie}
-              name={"pomieszczenie"}
+              value={this.props.activeRoom}
+              name={"activeRoom"}
               onChange={this.props.handleFilteringChange}
             >
               {pomieszczenia}
             </select>
           </div>
           <div className={"paneloption"}>
-            <label htmlFor="rodzaj">Wybierz rodzaj: </label>
+            <label htmlFor="activeType">Wybierz rodzaj: </label>
             <select
               className={"selectfilterPanel"}
-              value={this.props.rodzaj}
-              name="rodzaj"
+              value={this.props.activeType}
+              name="activeType"
               onChange={this.props.handleFilteringChange}
             >
               {rodzaje}
