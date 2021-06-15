@@ -15,6 +15,7 @@ class Shop extends React.Component {
   state = {
     isActiveCatalog: true,
     isActiveCart: false,
+    cart: [],
     productList: [],
     collectionList: [],
     materialList: [],
@@ -176,6 +177,13 @@ class Shop extends React.Component {
       isActiveCart: true,
     });
   };
+  handleAddToCart = (e) => {
+    const name = e.target.name;
+    const product = e.target.product;
+    console.log("dodano do koszyka");
+    console.log(name);
+    console.log(product);
+  };
   render() {
     return (
       <section id="shop" className={"shop"}>
@@ -197,6 +205,7 @@ class Shop extends React.Component {
             />
             <FurnitureCatalog
               handleShowCart={this.handleShowCart}
+              handleAddToCart={this.handleAddToCart}
               productList={this.state.productList}
               accessLevel={this.props.accessLevel}
             />

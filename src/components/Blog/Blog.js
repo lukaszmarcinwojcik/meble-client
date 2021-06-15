@@ -2,48 +2,84 @@ import React from "react";
 import "./Blog.css";
 import Article from "./Article";
 
+const articleList = "http://localhost:5000/article";
+
 class Blog extends React.Component {
   state = {
-    articles: [
-      {
-        _id: "001",
-        title: "Materialy",
-        author: "Andrzej Kowalski",
-        body: "Do naszych mebli uzylismy najlepszych materialow z debu i orzecha",
-      },
-      {
-        _id: "002",
-        title: "Design",
-        author: "Janusz Nowak",
-        body: "Design naszych mebli jest ponadczasowy i uniwersalnych",
-      },
-      {
-        _id: "003",
-        title: "Wytrzymalosc",
-        author: "Andrzej Kowalski",
-        body: "Nasze meble sa tak wytrzymale ze ja niemoge i omatkobosko",
-      },
-      {
-        _id: "004",
-        title: "Ergonomia",
-        author: "Eugeniusz Zbyszek",
-        body: "Jedna z wielu zalet naszych mebli jest ergonomia elegancksa",
-      },
-    ],
+    articleList: null,
+    articleNumber: 0,
+    articleLength: 0,
   };
+
+  handleNextArticle = () => {
+    if (this.state.articleNumber === this.state.articleLength - 1) {
+      this.setState({
+        articleNumber: 0,
+      });
+    } else {
+      this.setState({
+        articleNumber: this.state.articleNumber + 1,
+      });
+    }
+  };
+  handlePrevArticle = () => {
+    if (this.state.articleNumber === 0) {
+      this.setState({
+        articleNumber: this.state.articleLength - 1,
+      });
+    } else {
+      this.setState({
+        articleNumber: this.state.articleNumber - 1,
+      });
+    }
+  };
+  getArticleList = () => {
+    fetch(articleList)
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        }
+        throw Error(response.status);
+      })
+      .then((response) => response.json())
+      .then((articleList) => {
+        console.log("article do articleList:", articleList);
+        let articleLength = articleList.length;
+        console.log("dlugosc tablicy", articleLength);
+        this.setState({
+          articleList: articleList,
+          articleLength: articleLength,
+        });
+      })
+      .catch((error) => console.log(error));
+  };
+  updateArticle = () => {
+    this.getArticleList();
+  };
+  componentDidMount() {
+    this.getArticleList();
+  }
   render() {
-    const articlesList = this.state.articles.map((article) => (
-      <Article
-        key={article._id}
-        title={article.title}
-        body={article.body}
-        author={article.author}
-      />
-    ));
+    let { articleList, articleNumber } = this.state;
+
     return (
-      <section id="blog" className="blog">
-        <h1 className="titleblog">Witaj na naszym blogu</h1>
-        {articlesList}
+      <section id="blog" className={"blog"}>
+        <div className={"separator"}></div>
+        <h1 className="titleblog">WITAJ NA NASZYM BLOGU</h1>
+        {this.state.articleList ? (
+          <Article
+            handleNextArticle={this.handleNextArticle}
+            handlePrevArticle={this.handlePrevArticle}
+            updateArticle={this.updateArticle}
+            _id={articleList[articleNumber]._id}
+            key={articleList[articleNumber]._id}
+            title={articleList[articleNumber].title}
+            body={articleList[articleNumber].body}
+            author={articleList[articleNumber].author}
+            picture={articleList[articleNumber].picture}
+            commentList={articleList[articleNumber].comment}
+          />
+        ) : null}
       </section>
     );
   }

@@ -5,6 +5,9 @@
 .katalogProduktow {
   margin-top: 60px;
 
-  background:white;
+  background: white;
 }
-
+.separator {
+  height: 60px;
+  background: white;
+}

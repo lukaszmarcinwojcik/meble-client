@@ -1,13 +1,14 @@
 import React from "react";
-import "./Blog.css";
+import "./Comment.css";
 
 class Comment extends React.Component {
   state = {};
   render() {
     return (
-      <section className="blog">
-        <h2 className="titleblog">Andrzej</h2>
-        <p>Bardzo ladne meble</p>
+      <section className={"comment"}>
+        <div className={"avatar"}></div>
+        <p className={"authorComment"}>{this.props.author}</p>
+        <p>{this.props.body}</p>
       </section>
     );
   }

@@ -15,16 +15,19 @@ class NavBar extends React.Component {
     return (
       <nav className="navbar">
         <h2 className="titlenav">MEBLE KLASYCZNE </h2>
-        <button className={"menubtn"} onClick={this.handleShowMenu}>
-          {this.state.isActiveLogPanel ? "ZAMKNIJ" : "MENU"}
-        </button>
-        <button
-          className={"logowanie"}
-          onClick={this.props.handleShowLoginPanel}
-        >
-          {this.props.isActiveLogPanel ? "ZAMKNIJ" : "LOGOWANIE"}
-        </button>
-        {this.state.isActiveMenu ? <MenuBar /> : null}
+        <div className={"menubtn"} onClick={this.handleShowMenu}>
+          {/* {this.state.isActiveLogPanel ? "ZAMKNIJ" : "MENU"} */}
+        </div>
+        <div className={"loginbtn"} onClick={this.props.handleShowLoginPanel}>
+          {/* {this.props.isActiveLogPanel ? "ZAMKNIJ" : "LOGOWANIE"} */}
+        </div>
+        {this.state.isActiveMenu ? (
+          <MenuBar handleShowMenu={this.handleShowMenu} />
+        ) : null}
+        <span class="scrollTopButton"></span>
+        <a href="#banner" class="scrollTopButton">
+          <span></span>
+        </a>
       </nav>
     );
   }

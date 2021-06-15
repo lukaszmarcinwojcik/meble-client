@@ -1,0 +1,16 @@
+.comment {
+  text-align: left;
+  border-top: 1px solid darkgray;
+}
+.avatar {
+  background-image: url("../../image/icons/avatar.png");
+  object-fit: fill;
+  margin: 20px 20px 5px 20px;
+  float: left;
+  height: 48px;
+  width: 48px;
+}
+
+.authorComment {
+  font-weight: bold;
+}

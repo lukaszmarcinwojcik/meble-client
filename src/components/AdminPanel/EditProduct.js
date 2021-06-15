@@ -1,17 +1,18 @@
 import React from "react";
-import "./AddProduct.css";
+// import "./AddProduct.css";
 
 const collectionList = "http://localhost:5000/collectionList";
 const materialList = "http://localhost:5000/materialList";
 const roomList = "http://localhost:5000/roomList";
 const typeList = "http://localhost:5000/typeList";
 
-class AddProduct extends React.Component {
+class EditProduct extends React.Component {
   state = {
     collectionList: [],
     materialList: [],
     roomList: [],
     typeList: [],
+    activeId: "",
     activeName: "",
     activeCollection: "",
     activeMaterial: "",
@@ -92,13 +93,27 @@ class AddProduct extends React.Component {
       })
       .catch((error) => console.log(error));
   };
-
+  setActiveParameters = () => {
+    console.log("ustawiam typ: ", this.props.type);
+    this.setState({
+      activeId: this.props._id,
+      activeName: this.props.name,
+      activeCollection: this.props.furnitureCollection,
+      activeMaterial: this.props.material,
+      activeRoom: this.props.room,
+      activeType: this.props.type,
+      activeDate: this.props.date,
+      activeFilename: this.props.filename,
+      activePrice: this.props.price,
+    });
+  };
   componentDidMount() {
     // this.getProductList();
     this.getCollectionList();
     this.getMaterialList();
     this.getRoomList();
     this.getTypeList();
+    this.setActiveParameters();
   }
 
   handleFilteringChange = (e) => {
@@ -114,30 +129,19 @@ class AddProduct extends React.Component {
   handleAddProdukt = (e) => {
     e.preventDefault();
     const {
+      activeId,
       activeName,
       activeCollection,
       activeMaterial,
       activeRoom,
       activeType,
-      activeFilename,
       activePrice,
+      activeFilename,
     } = this.state;
-
-    if (
-      activeName === "" ||
-      activeCollection === "" ||
-      activeMaterial === "" ||
-      activeRoom === "" ||
-      activeType === "" ||
-      activeFilename === "" ||
-      activePrice === ""
-    ) {
-      alert("Proszę uzupelnic wszystkie pola");
-      return;
-    }
-    fetch("http://localhost:5000/admin/add/product", {
-      method: "POST",
+    fetch("http://localhost:5000/admin/edit/product", {
+      method: "PUT",
       body: JSON.stringify({
+        id: activeId,
         name: activeName,
         type: activeType,
         furnitureCollection: activeCollection,
@@ -153,6 +157,9 @@ class AddProduct extends React.Component {
       .then((resp) => resp.json())
       .then((data) => {
         console.log("to mi zwrocilo: ", data);
+        this.props.updateProductList();
+        this.props.showEditPanel();
+        alert("Zapisano zmiany");
         this.setState({
           // loginMessage: data.loginMessage,
           // islogged: data.islogged,
@@ -163,42 +170,28 @@ class AddProduct extends React.Component {
     //////////////////////////////////////////////////////
   };
   render() {
-    let kolekcje = [{ _id: -1, name: "wybierz" }].concat(
-      this.state.collectionList
-    );
-    kolekcje = kolekcje.map((collection) => (
+    let kolekcje = this.state.collectionList.map((collection) => (
       <option key={collection._id} value={collection.name}>
         {collection.name}
       </option>
     ));
-    let materialy = [{ _id: -1, name: "wybierz" }].concat(
-      this.state.materialList
-    );
-    materialy = materialy.map((material) => (
+    let materialy = this.state.materialList.map((material) => (
       <option key={material._id} value={material.name}>
         {material.name}
       </option>
     ));
-    let pomieszczenia = [{ _id: -1, name: "wybierz" }].concat(
-      this.state.roomList
-    );
-    pomieszczenia = pomieszczenia.map((room) => (
+    let pomieszczenia = this.state.roomList.map((room) => (
       <option key={room._id} value={room.name}>
         {room.name}
       </option>
     ));
-    let rodzaje = [{ _id: -1, name: "wybierz" }].concat(this.state.typeList);
-    rodzaje = rodzaje.map((type) => (
+    let rodzaje = this.state.typeList.map((type) => (
       <option key={type._id} value={type.name}>
         {type.name}
       </option>
     ));
-
     return (
-      <div className="AddProduktPanel">
-        <div className={"paneloption"}>
-          <h2>Panel dodawania mebli</h2>
-        </div>
+      <div className="EdytujParametryPanel">
         <div>
           <div className={"paneloption"}>
             <label htmlFor="activeName">Podaj nazwę: </label>
@@ -277,7 +270,7 @@ class AddProduct extends React.Component {
           </div>
           <div className={"paneloption"}>
             <button className={"btnAdd"} onClick={this.handleAddProdukt}>
-              DODAJ PRODUKT
+              ZAPISZ ZMIANY
             </button>
           </div>
         </div>
@@ -286,4 +279,4 @@ class AddProduct extends React.Component {
   }
 }
 
-export default AddProduct;
+export default EditProduct;

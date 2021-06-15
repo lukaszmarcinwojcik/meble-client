@@ -6,6 +6,7 @@ class AboutUs extends React.Component {
   render() {
     return (
       <section id="aboutus" className={"aboutUs"}>
+        <div className={"separator"}></div>
         <h2>Meble klasyczne sprzedaż, renowacja, realizacja projektów</h2>
         <div className={"aboutUsImage"}></div>
         <div className={"aboutUsDescription"}>

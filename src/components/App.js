@@ -8,6 +8,7 @@ import Newsletter from "./Newsletter/Newsletter";
 import AboutUs from "./AboutUs/AboutUs";
 import Shop from "./Shop/Shop";
 import LoginPanel from "./LoginPanel/LoginPanel";
+import Gallery from "./Gallery/Gallery";
 
 class App extends Component {
   state = {
@@ -110,6 +111,7 @@ class App extends Component {
           isActiveLogPanel={this.state.isActiveLogPanel}
           accessLevel={this.state.accessLevel}
         />
+        <Gallery />
         <Blog />
         <Newsletter />
         <AboutUs />

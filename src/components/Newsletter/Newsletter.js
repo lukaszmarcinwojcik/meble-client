@@ -66,6 +66,7 @@ class Newsletter extends React.Component {
     console.log("message to: ", this.state.message);
     return (
       <section id="newsletter" className={"newsletter"}>
+        <div className={"separator"}></div>
         <div className={"newslettercont"}>
           <div className={"newsletterDescription"}>
             <h1>ZAPISZ SIĘ DO NEWSLETTERA</h1>

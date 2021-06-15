@@ -1,0 +1,19 @@
+.gallery {
+  clear: both;
+}
+.galleryContainer {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  border-bottom: black 2px solid;
+  border-top: black 2px solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.galleryTitle {
+  width: 80%;
+  margin: auto;
+  padding-bottom: 10px;
+}

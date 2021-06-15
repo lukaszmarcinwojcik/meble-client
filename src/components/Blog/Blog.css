@@ -1,7 +1,12 @@
 .blog {
-    margin: 5px;
-    width: auto;
-    height: auto;
-    border: 2px solid black;
-    clear: both;
+  height: auto;
+  clear: both;
+  width: 1100px;
+  margin: auto;
+  clear: both;
+}
+.titleblog {
+  border-bottom: black 2px solid;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
 }
