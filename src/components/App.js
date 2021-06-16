@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Axios from "axios";
 import "./App.css";
 import NavBar from "./NavBar/NavBar";
 import Sliders from "./Sliders/Sliders";
@@ -12,11 +13,11 @@ import Gallery from "./Gallery/Gallery";
 
 class App extends Component {
   state = {
-    islogged: true,
+    islogged: false,
     message: null,
     errorsList: "",
     isActiveLogPanel: false,
-    accessLevel: 3,
+    accessLevel: 0,
     email: "",
     password: "",
   };
@@ -52,7 +53,12 @@ class App extends Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("bledy z logowania:", data.errors);
+        // console.log("bledy z logowania:", data.errors);
+        console.log(data);
+
+        if (data.authenticated) {
+          localStorage.setItem("token", data.accessToken);
+        }
         this.setState({
           errorsList: data.errors,
           message: data.message,
@@ -64,7 +70,12 @@ class App extends Component {
       });
   };
   handleLogout = () => {
-    fetch("http://localhost:5000/users/logout")
+    fetch("http://localhost:5000/users/logout", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => {
         if (response.ok) {
           return response;
@@ -73,6 +84,8 @@ class App extends Component {
       })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
+        localStorage.setItem("token", "");
         this.setState({
           message: data.message,
           islogged: data.islogged,
@@ -83,6 +96,7 @@ class App extends Component {
   };
 
   render() {
+    Axios.defaults.withCredentials = true;
     return (
       <div className={"App"}>
         <NavBar
@@ -122,3 +136,22 @@ class App extends Component {
 }
 
 export default App;
+
+// handleLogout = () => {
+//   fetch("http://localhost:5000/users/logout")
+//     .then((response) => {
+//       if (response.ok) {
+//         return response;
+//       }
+//       throw Error(response.status);
+//     })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       this.setState({
+//         message: data.message,
+//         islogged: data.islogged,
+//         accessLevel: data.accessLevel,
+//       });
+//     })
+//     .catch((error) => console.log(error));
+// };

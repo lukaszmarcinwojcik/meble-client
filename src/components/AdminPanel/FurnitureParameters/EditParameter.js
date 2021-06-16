@@ -31,6 +31,7 @@ class EditParameter extends React.Component {
     let editParam =
       "http://localhost:5000/admin/edit/" + this.props.parameterName;
     console.log("linki: ", editParam);
+
     fetch(editParam, {
       method: "PUT",
       body: JSON.stringify({
@@ -38,6 +39,7 @@ class EditParameter extends React.Component {
         newName: this.state.newParameter,
       }),
       headers: {
+        "x-access-token": localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
     })

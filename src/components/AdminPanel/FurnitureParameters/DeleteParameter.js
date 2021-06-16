@@ -27,7 +27,13 @@ class DeleteParameter extends React.Component {
       "/" +
       this.state.activeParameterId;
     console.log("linki: ", deleteParam);
-    fetch(deleteParam, { method: "DELETE" })
+    fetch(deleteParam, {
+      method: "DELETE",
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

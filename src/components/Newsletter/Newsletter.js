@@ -63,7 +63,6 @@ class Newsletter extends React.Component {
       });
   };
   render() {
-    console.log("message to: ", this.state.message);
     return (
       <section id="newsletter" className={"newsletter"}>
         <div className={"separator"}></div>

@@ -151,6 +151,7 @@ class EditProduct extends React.Component {
         filename: activeFilename,
       }),
       headers: {
+        "x-access-token": localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
     })
@@ -159,7 +160,11 @@ class EditProduct extends React.Component {
         console.log("to mi zwrocilo: ", data);
         this.props.updateProductList();
         this.props.showEditPanel();
-        alert("Zapisano zmiany");
+        if (data.message) {
+          alert(data.message);
+        } else {
+          alert("Zapisano zmiany");
+        }
         this.setState({
           // loginMessage: data.loginMessage,
           // islogged: data.islogged,

@@ -24,8 +24,8 @@ class NavBar extends React.Component {
         {this.state.isActiveMenu ? (
           <MenuBar handleShowMenu={this.handleShowMenu} />
         ) : null}
-        <span class="scrollTopButton"></span>
-        <a href="#banner" class="scrollTopButton">
+        <span className={"scrollTopButton"}></span>
+        <a href="#banner" className={"scrollTopButton"}>
           <span></span>
         </a>
       </nav>

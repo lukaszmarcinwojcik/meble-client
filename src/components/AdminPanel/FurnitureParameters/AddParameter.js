@@ -29,6 +29,7 @@ class AddParameter extends React.Component {
         value: value,
       }),
       headers: {
+        "x-access-token": localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
     })

@@ -147,6 +147,7 @@ class AddProduct extends React.Component {
         filename: activeFilename,
       }),
       headers: {
+        "x-access-token": localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
     })
