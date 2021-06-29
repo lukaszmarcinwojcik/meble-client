@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Axios from "axios";
+// import Axios from "axios";
 import "./App.css";
 import NavBar from "./NavBar/NavBar";
 import Sliders from "./Sliders/Sliders";
@@ -85,7 +85,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        localStorage.setItem("token", "");
+        localStorage.clear();
         this.setState({
           message: data.message,
           islogged: data.islogged,
@@ -96,7 +96,7 @@ class App extends Component {
   };
 
   render() {
-    Axios.defaults.withCredentials = true;
+    // Axios.defaults.withCredentials = true;
     return (
       <div className={"App"}>
         <NavBar

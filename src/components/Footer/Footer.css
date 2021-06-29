@@ -5,7 +5,7 @@
   clear: both;
 }
 
-.kolumna {
+.column {
   border-left: 2px solid white;
   border-right: 2px solid white;
   font-size: 20px;
@@ -14,7 +14,7 @@
   width: 300px;
   float: left;
 }
-.kontener {
+.container {
   padding-top: 30px;
   padding-bottom: 50px;
   margin: auto;
@@ -22,13 +22,31 @@
   width: 912px;
 }
 
-.ikona {
+.iconFb {
+  /* background-image: url("../../image/icons/iconmonstr-facebook-3-72.png"); */
   float: left;
-  border: 2px solid white;
-  height: 70px;
-  width: 70px;
-  margin: 5px;
+  /* border: 1px solid white; */
+  height: 72px;
+  width: 72px;
+  margin: 6.5px;
 }
+.iconTw {
+  background-image: url("../../image/icons/iconmonstr-twitter-3-72.png");
+  float: left;
+  /* border: 2px solid white; */
+  height: 72px;
+  width: 72px;
+  margin: 6.5px;
+}
+.iconIn {
+  background-image: url("../../image/icons/iconmonstr-instagram-13-72.png");
+  float: left;
+  /* border: 2px solid white; */
+  height: 72px;
+  width: 72px;
+  margin: 6.5px;
+}
+
 .media {
   width: 255px;
   margin: auto;
