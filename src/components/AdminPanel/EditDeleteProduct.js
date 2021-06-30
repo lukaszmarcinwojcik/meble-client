@@ -9,7 +9,7 @@ class EditDeleteProduct extends React.Component {
     e.preventDefault();
 
     let deleteProduct =
-      "http://localhost:5000/admin/delete/product/" + this.props._id;
+      "https://meble-api.herokuapp.com/admin/delete/product/" + this.props._id;
 
     fetch(deleteProduct, {
       method: "DELETE",

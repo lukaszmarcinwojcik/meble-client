@@ -29,7 +29,7 @@ class EditParameter extends React.Component {
       return;
     }
     let editParam =
-      "http://localhost:5000/admin/edit/" + this.props.parameterName;
+      "https://meble-api.herokuapp.com/admin/edit/" + this.props.parameterName;
 
     fetch(editParam, {
       method: "PUT",

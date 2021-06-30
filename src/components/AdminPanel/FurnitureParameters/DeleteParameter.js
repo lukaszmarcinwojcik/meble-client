@@ -17,7 +17,7 @@ class DeleteParameter extends React.Component {
       return;
     }
     let deleteParam =
-      "http://localhost:5000/admin/delete/" +
+      "https://meble-api.herokuapp.com/admin/delete/" +
       this.props.parameterName +
       "/" +
       this.state.activeParameterId;

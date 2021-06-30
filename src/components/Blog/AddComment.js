@@ -26,7 +26,7 @@ class AddComment extends React.Component {
     }
 
     const article = this.props._id;
-    fetch("http://localhost:5000/article/comment/add", {
+    fetch("https://meble-api.herokuapp.com/article/comment/add", {
       method: "POST",
       body: JSON.stringify({
         author: nick,

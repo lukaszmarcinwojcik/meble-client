@@ -66,7 +66,7 @@ class Cart extends React.Component {
         {this.state.paymentPanelIsActive ? (
           <>
             <div className={"paymentPanel"}>
-              <h2>Wybierz formę płatnośći</h2>
+              <h2>Wybierz formę płatności</h2>
               <div className={"paymentMethod"}></div>
               <button className={"cartBtn"} onClick={this.showCartProductLtis}>
                 WRÓĆ DO KOSZYKA

@@ -2,13 +2,13 @@ import React from "react";
 import "./Shop.css";
 import FurnitureCatalog from "./FurnitureCatalog";
 import Cart from "./Cart";
-
-const API = "http://localhost:5000/";
-const productList = "http://localhost:5000/productList";
-const collectionList = "http://localhost:5000/collectionList";
-const materialList = "http://localhost:5000/materialList";
-const roomList = "http://localhost:5000/roomList";
-const typeList = "http://localhost:5000/typeList";
+// https://meble-api.herokuapp.com/
+const API = "https://meble-api.herokuapp.com/";
+const productList = "https://meble-api.herokuapp.com/productList";
+const collectionList = "https://meble-api.herokuapp.com/collectionList";
+const materialList = "https://meble-api.herokuapp.com/materialList";
+const roomList = "https://meble-api.herokuapp.com/roomList";
+const typeList = "https://meble-api.herokuapp.com/typeList";
 
 class Shop extends React.Component {
   state = {

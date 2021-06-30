@@ -2,7 +2,7 @@ import React from "react";
 import EditDeleteProduct from "./EditDeleteProduct";
 import "./EditProductList.css";
 
-const productList = "http://localhost:5000/productList";
+const productList = "https://meble-api.herokuapp.com/productList";
 
 class EditProductList extends React.Component {
   state = { productList: [] };

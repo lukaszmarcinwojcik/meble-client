@@ -39,7 +39,7 @@ class Newsletter extends React.Component {
   handleNewsletterSubmit = (e) => {
     e.preventDefault();
     const { username, email, rodo1, rodo2 } = this.state;
-    fetch("http://localhost:5000/newsletter/add", {
+    fetch("https://meble-api.herokuapp.com/newsletter/add", {
       method: "POST",
       body: JSON.stringify({
         username: username,

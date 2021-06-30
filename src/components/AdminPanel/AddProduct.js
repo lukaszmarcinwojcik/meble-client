@@ -1,10 +1,10 @@
 import React from "react";
 import "./AddProduct.css";
 
-const collectionList = "http://localhost:5000/collectionList";
-const materialList = "http://localhost:5000/materialList";
-const roomList = "http://localhost:5000/roomList";
-const typeList = "http://localhost:5000/typeList";
+const collectionList = "https://meble-api.herokuapp.com/collectionList";
+const materialList = "https://meble-api.herokuapp.com/materialList";
+const roomList = "https://meble-api.herokuapp.com/roomList";
+const typeList = "https://meble-api.herokuapp.com/typeList";
 
 class AddProduct extends React.Component {
   state = {
@@ -128,7 +128,7 @@ class AddProduct extends React.Component {
       alert("Proszę uzupelnic wszystkie pola");
       return;
     }
-    fetch("http://localhost:5000/admin/add/product", {
+    fetch("https://meble-api.herokuapp.com/admin/add/product", {
       method: "POST",
       body: JSON.stringify({
         name: activeName,

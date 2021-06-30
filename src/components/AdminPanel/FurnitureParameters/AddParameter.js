@@ -19,7 +19,7 @@ class AddParameter extends React.Component {
       return;
     }
     let addParam =
-      "http://localhost:5000/admin/add/" + this.props.parameterName;
+      "https://meble-api.herokuapp.com/admin/add/" + this.props.parameterName;
     let value = this.state.newParameter;
 
     fetch(addParam, {

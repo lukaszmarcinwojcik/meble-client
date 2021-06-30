@@ -2,7 +2,7 @@ import React from "react";
 import "./Blog.css";
 import Article from "./Article";
 
-const articleList = "http://localhost:5000/article";
+const articleList = "https://meble-api.herokuapp.com/article";
 
 class Blog extends React.Component {
   state = {
