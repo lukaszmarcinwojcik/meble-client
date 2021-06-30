@@ -13,6 +13,7 @@ class Article extends React.Component {
   render() {
     const commentList = this.props.commentList.map((comment) => (
       <Comment
+        key={comment._id}
         author={comment.author}
         body={comment.body}
         createdAt={comment.createdAt}
@@ -35,9 +36,7 @@ class Article extends React.Component {
               onClick={this.props.handleNextArticle}
             ></div>
           </div>
-          {/* <div className={"articleImage"}> */}
           <img className={"articleImage"} src={this.props.picture} alt=""></img>
-          {/* </div> */}
           <div className={"articleContent"}>
             <p>{this.props.body}</p>
             <p>{this.props.author}</p>

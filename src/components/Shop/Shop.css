@@ -1,5 +1,6 @@
 .shop {
-  margin-top: 60px;
-
+  clear: both;
+  width: 1280px;
+  margin: auto;
   background: white;
 }

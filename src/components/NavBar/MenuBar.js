@@ -10,7 +10,9 @@ const MenuBar = (props) => {
       <a href="#shop" onClick={props.handleShowMenu}>
         KATALOG
       </a>
-      <a href="#gallery">NASZE PROJEKTY</a>
+      <a href="#gallery" onClick={props.handleShowMenu}>
+        NASZE PROJEKTY
+      </a>
       <a href="#blog" onClick={props.handleShowMenu}>
         BLOG
       </a>

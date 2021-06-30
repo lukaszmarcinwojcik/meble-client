@@ -21,7 +21,6 @@ class Newsletter extends React.Component {
   };
 
   handleNewsletterChange = (e) => {
-    console.log(e.target.value);
     const type = e.target.type;
     const name = e.target.name;
     if (type === "text" || type === "email") {
@@ -54,7 +53,6 @@ class Newsletter extends React.Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("to mi zwrocilo: ", data);
         this.setState({
           errorsList: data.errors,
           message: data.message,
@@ -123,7 +121,6 @@ class Newsletter extends React.Component {
                 <h3>
                   Rodo 1
                   <input
-                    // className={"logPanel"}
                     type="checkbox"
                     id="rodo1"
                     name="rodo1"
@@ -144,7 +141,6 @@ class Newsletter extends React.Component {
                 <h3>
                   Rodo 2{" "}
                   <input
-                    // className={"logPanel"}
                     type="checkbox"
                     id="rodo2"
                     name="rodo2"

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-// import Axios from "axios";
 import "./App.css";
 import NavBar from "./NavBar/NavBar";
-import Sliders from "./Sliders/Sliders";
+import Slider from "./Slider/Slider";
 import Footer from "./Footer/Footer";
 import Blog from "./Blog/Blog";
 import Newsletter from "./Newsletter/Newsletter";
@@ -13,24 +12,20 @@ import Gallery from "./Gallery/Gallery";
 
 class App extends Component {
   state = {
-    islogged: false,
     message: null,
     errorsList: "",
     isActiveLogPanel: false,
-    accessLevel: 0,
+
     email: "",
     password: "",
   };
 
   handleShowLoginPanel = () => {
-    // console.log(this.state.isActiveLogPanel, "sasasasa");
     this.setState({
       isActiveLogPanel: !this.state.isActiveLogPanel,
     });
   };
   handleLoginChange = (e) => {
-    // console.log(e.target.type, "targettype");
-    // console.log(e.target.name, "targetname");
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -53,11 +48,11 @@ class App extends Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        // console.log("bledy z logowania:", data.errors);
-        console.log(data);
-
         if (data.authenticated) {
-          localStorage.setItem("token", data.accessToken);
+          localStorage.setItem("accessToken", data.accessToken);
+          localStorage.setItem("accessLevel", data.accessLevel);
+          localStorage.setItem("islogged", data.islogged);
+          localStorage.setItem("user", JSON.stringify(data.user));
         }
         this.setState({
           errorsList: data.errors,
@@ -72,7 +67,7 @@ class App extends Component {
   handleLogout = () => {
     fetch("http://localhost:5000/users/logout", {
       headers: {
-        "x-access-token": localStorage.getItem("token"),
+        "x-access-token": localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     })
@@ -84,7 +79,6 @@ class App extends Component {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         localStorage.clear();
         this.setState({
           message: data.message,
@@ -96,7 +90,8 @@ class App extends Component {
   };
 
   render() {
-    // Axios.defaults.withCredentials = true;
+    const accessLevel = JSON.parse(localStorage.getItem("accessLevel"));
+    const islogged = JSON.parse(localStorage.getItem("islogged"));
     return (
       <div className={"App"}>
         <NavBar
@@ -107,7 +102,7 @@ class App extends Component {
         {this.state.isActiveLogPanel ? (
           <LoginPanel
             handleLogout={this.handleLogout}
-            islogged={this.state.islogged}
+            islogged={islogged}
             message={this.state.message}
             errorsList={this.state.errorsList}
             handleShowLoginPanel={this.handleShowLoginPanel}
@@ -118,12 +113,12 @@ class App extends Component {
           />
         ) : null}
 
-        <Sliders />
-        {/* <section id="shop" className="katalogProduktow"></section> */}
+        <Slider />
+
         <Shop
-          islogged={this.state.islogged}
+          islogged={islogged}
           isActiveLogPanel={this.state.isActiveLogPanel}
-          accessLevel={this.state.accessLevel}
+          accessLevel={accessLevel}
         />
         <Gallery />
         <Blog />
@@ -136,22 +131,3 @@ class App extends Component {
 }
 
 export default App;
-
-// handleLogout = () => {
-//   fetch("http://localhost:5000/users/logout")
-//     .then((response) => {
-//       if (response.ok) {
-//         return response;
-//       }
-//       throw Error(response.status);
-//     })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       this.setState({
-//         message: data.message,
-//         islogged: data.islogged,
-//         accessLevel: data.accessLevel,
-//       });
-//     })
-//     .catch((error) => console.log(error));
-// };

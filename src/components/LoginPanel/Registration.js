@@ -1,5 +1,4 @@
 import React from "react";
-// import "./DeleteEditProdukt.css";
 
 const ErrorsList = (props) => {
   let errorsList = props.errorsList.map((error) => (
@@ -21,7 +20,6 @@ class Registration extends React.Component {
     message: "",
   };
   handleRegistrationChange = (e) => {
-    console.log(e.target.value);
     const type = e.target.type;
     const name = e.target.name;
     if (
@@ -59,11 +57,9 @@ class Registration extends React.Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("to mi zwrocilo: ", data);
         this.setState({
           errorsList: data.errors,
           message: data.message,
-          /////
         });
       });
   };

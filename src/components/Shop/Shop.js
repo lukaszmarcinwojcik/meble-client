@@ -1,6 +1,5 @@
 import React from "react";
 import "./Shop.css";
-import FurnitureFilterPanel from "./FurnitureFilterPanel";
 import FurnitureCatalog from "./FurnitureCatalog";
 import Cart from "./Cart";
 
@@ -37,7 +36,6 @@ class Shop extends React.Component {
       })
       .then((response) => response.json())
       .then((productList) => {
-        console.log("pobrane meble do meble list:", productList);
         this.setState({
           productList: productList,
         });
@@ -55,7 +53,6 @@ class Shop extends React.Component {
       })
       .then((response) => response.json())
       .then((collectionList) => {
-        console.log("pobrano: ", collectionList);
         this.setState({
           collectionList: collectionList,
         });
@@ -73,7 +70,6 @@ class Shop extends React.Component {
       })
       .then((response) => response.json())
       .then((materialList) => {
-        console.log("pobrano: ", materialList);
         this.setState({
           materialList: materialList,
         });
@@ -91,7 +87,6 @@ class Shop extends React.Component {
       })
       .then((response) => response.json())
       .then((roomList) => {
-        console.log("pobrano: ", roomList);
         this.setState({
           roomList: roomList,
         });
@@ -109,7 +104,6 @@ class Shop extends React.Component {
       })
       .then((response) => response.json())
       .then((typeList) => {
-        console.log("pobrano: ", typeList);
         this.setState({
           typeList: typeList,
         });
@@ -126,12 +120,10 @@ class Shop extends React.Component {
   }
 
   postMebleList = (reqOptions) => {
-    console.log(API + reqOptions);
     const url = API + reqOptions;
     fetch(url, { method: "GET" })
       .then((response) => response.json())
       .then((productList) => {
-        console.log(productList);
         this.setState({
           productList: productList,
         });
@@ -149,7 +141,6 @@ class Shop extends React.Component {
     });
   };
   handleFilteringChange = (e) => {
-    console.log(e.target.value, e.target.name);
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -162,7 +153,6 @@ class Shop extends React.Component {
     const { activeCollection, activeMaterial, activeRoom, activeType } =
       this.state;
     var reqOptions = `filter?collection=${activeCollection}&material=${activeMaterial}&room=${activeRoom}&type=${activeType}`;
-    console.log("req option w handle filtr panel", reqOptions);
     this.postMebleList(reqOptions);
   };
   handleShowCatalog = () => {
@@ -178,18 +168,42 @@ class Shop extends React.Component {
     });
   };
   handleAddToCart = (e) => {
-    const name = e.target.name;
-    const product = e.target.product;
-    console.log("dodano do koszyka");
-    console.log(name);
-    console.log(product);
+    const id = e.target.value;
+    let cartItem;
+    let cartListItem = JSON.parse(localStorage.getItem("cartListItem"));
+    if (!cartListItem) {
+      cartListItem = [];
+    }
+    if (cartListItem.includes(id)) {
+      return;
+    }
+    cartItem = id;
+    cartListItem = cartListItem.concat(cartItem);
+    localStorage.setItem("cartListItem", JSON.stringify(cartListItem));
+  };
+  deleteFromCart = (e) => {
+    const id = e.target.value;
+
+    let cartListItem = JSON.parse(localStorage.getItem("cartListItem"));
+    let index = cartListItem.findIndex((product) => product === id);
+
+    cartListItem.splice(index, 1);
+    localStorage.setItem("cartListItem", JSON.stringify(cartListItem));
+
+    this.handleShowCart();
   };
   render() {
+    let cartListItem = JSON.parse(localStorage.getItem("cartListItem"));
     return (
       <section id="shop" className={"shop"}>
+        <div className={"separator"}></div>
         {this.state.isActiveCatalog ? (
           <section className={"catalog"}>
-            <FurnitureFilterPanel
+            <FurnitureCatalog
+              handleShowCart={this.handleShowCart}
+              handleAddToCart={this.handleAddToCart}
+              productList={this.state.productList}
+              accessLevel={this.props.accessLevel}
               activeCollection={this.state.activeCollection}
               activeMaterial={this.state.activeMaterial}
               activeRoom={this.state.activeRoom}
@@ -201,18 +215,16 @@ class Shop extends React.Component {
               handleFilteringSubmit={this.handleFilteringSubmit}
               handleFilteringChange={this.handleFilteringChange}
               handleDeleteFilters={this.handleDeleteFilters}
-              accessLevel={this.props.accessLevel}
-            />
-            <FurnitureCatalog
-              handleShowCart={this.handleShowCart}
-              handleAddToCart={this.handleAddToCart}
-              productList={this.state.productList}
-              accessLevel={this.props.accessLevel}
             />
           </section>
         ) : null}
         {this.state.isActiveCart ? (
-          <Cart handleShowCatalog={this.handleShowCatalog} />
+          <Cart
+            handleShowCatalog={this.handleShowCatalog}
+            cart={cartListItem}
+            productList={this.state.productList}
+            deleteFromCart={this.deleteFromCart}
+          />
         ) : null}
       </section>
     );

@@ -1,11 +1,6 @@
 import React from "react";
 import "./DeleteParameter.css";
 
-// const listaKolekcji = "http://localhost:5000/listaKolekcji";
-// const listaMaterialow = "http://localhost:5000/listaMaterialow";
-// const listaPomieszczen = "http://localhost:5000/listaPomieszczen";
-// const listaRodzajow = "http://localhost:5000/listaRodzajow";
-
 class DeleteParameter extends React.Component {
   state = { activeParameterId: "-1" };
   handleParameterChange = (e) => {
@@ -26,19 +21,24 @@ class DeleteParameter extends React.Component {
       this.props.parameterName +
       "/" +
       this.state.activeParameterId;
-    console.log("linki: ", deleteParam);
+
     fetch(deleteParam, {
       method: "DELETE",
       headers: {
-        "x-access-token": localStorage.getItem("token"),
+        "x-access-token": localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        alert("usunieto parametr");
-        this.props.updateParameters();
+        if (data.error) {
+          localStorage.clear();
+          alert(data.error);
+          window.location.reload(true);
+        } else {
+          alert("usunieto parametr");
+          this.props.updateParameters();
+        }
       });
   };
   render() {
@@ -52,9 +52,9 @@ class DeleteParameter extends React.Component {
     ));
     return (
       <div>
-        <label>USUN</label>
+        <label className={"adminpanelbtn"}>USUN</label>
         <select
-          className={"selectfilterPanel"}
+          className={"adminpanelbtn"}
           value={this.state.activeParameterId}
           name={"activeParameterId"}
           onChange={this.handleParameterChange}

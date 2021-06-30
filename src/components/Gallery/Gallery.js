@@ -1,8 +1,6 @@
 import React from "react";
 import "./Gallery.css";
 import ImageCard from "./ImageCard";
-// import "./MenuBar";
-// import MenuBar from "./MenuBar";
 
 const images = [
   {

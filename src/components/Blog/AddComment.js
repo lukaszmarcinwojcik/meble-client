@@ -4,7 +4,6 @@ import "./AddComment.css";
 class AddComment extends React.Component {
   state = { nick: "", body: "", article: "" };
   handleCommentChange = (e) => {
-    console.log(e.target.value);
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -40,7 +39,6 @@ class AddComment extends React.Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("to mi zwrocilo: ", data);
         this.setState({});
         alert("dodano komentarz");
         this.props.updateArticle();

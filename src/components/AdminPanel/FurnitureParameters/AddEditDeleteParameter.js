@@ -4,11 +4,6 @@ import AddParameter from "./AddParameter";
 import EditParameter from "./EditParameter";
 import DeleteParameter from "./DeleteParameter";
 
-// const listaKolekcji = "http://localhost:5000/listaKolekcji";
-// const listaMaterialow = "http://localhost:5000/listaMaterialow";
-// const listaPomieszczen = "http://localhost:5000/listaPomieszczen";
-// const listaRodzajow = "http://localhost:5000/listaRodzajow";
-
 class AddEditDeleteParameter extends React.Component {
   state = { isActiveAdd: false, isActiveDelete: false, isActiveEdit: false };
 

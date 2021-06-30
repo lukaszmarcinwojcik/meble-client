@@ -31,12 +31,9 @@ class FurnitureFilterPanel extends React.Component {
     ));
     return (
       <div className="mebleFilteringPanel">
-        <div className={"paneloption"}>
-          <h2>Panel filtrowania mebli</h2>
-        </div>
-        <div>
-          <div className={"paneloption"}>
-            <label htmlFor="activeCollection">Wybierz kolekcje: </label>
+        <div className={"filterPanelContainer"}>
+          <div className={"filterPanelOption"}>
+            <label htmlFor="activeCollection">kolekcja: </label>
             <select
               className={"selectfilterPanel"}
               value={this.props.activeCollection}
@@ -47,8 +44,8 @@ class FurnitureFilterPanel extends React.Component {
             </select>
           </div>
 
-          <div className={"paneloption"}>
-            <label htmlFor="activeMaterial">Wybierz material: </label>
+          <div className={"filterPanelOption"}>
+            <label htmlFor="activeMaterial">material: </label>
             <select
               className={"selectfilterPanel"}
               value={this.props.activeMaterial}
@@ -58,8 +55,8 @@ class FurnitureFilterPanel extends React.Component {
               {materialy}
             </select>
           </div>
-          <div className={"paneloption"}>
-            <label htmlFor="activeRoom">Wybierz pomieszczenie: </label>
+          <div className={"filterPanelOption"}>
+            <label htmlFor="activeRoom">pomieszczenie: </label>
             <select
               className={"selectfilterPanel"}
               value={this.props.activeRoom}
@@ -69,8 +66,8 @@ class FurnitureFilterPanel extends React.Component {
               {pomieszczenia}
             </select>
           </div>
-          <div className={"paneloption"}>
-            <label htmlFor="activeType">Wybierz rodzaj: </label>
+          <div className={"filterPanelOption"}>
+            <label htmlFor="activeType">rodzaj: </label>
             <select
               className={"selectfilterPanel"}
               value={this.props.activeType}
@@ -80,7 +77,7 @@ class FurnitureFilterPanel extends React.Component {
               {rodzaje}
             </select>
           </div>
-          <div className={"paneloption"}>
+          <div className={"filterPanelOption"}>
             <button
               className={"butnMebleFilter"}
               onClick={this.props.handleDeleteFilters}
@@ -88,7 +85,7 @@ class FurnitureFilterPanel extends React.Component {
               Pokaz wszystkie
             </button>
             <button
-              className={"szukaj"}
+              className={"btnFind"}
               onClick={this.props.handleFilteringSubmit}
             >
               Szukaj

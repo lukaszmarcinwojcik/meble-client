@@ -15,12 +15,11 @@ class NavBar extends React.Component {
     return (
       <nav className="navbar">
         <h2 className="titlenav">MEBLE KLASYCZNE </h2>
-        <div className={"menubtn"} onClick={this.handleShowMenu}>
-          {/* {this.state.isActiveLogPanel ? "ZAMKNIJ" : "MENU"} */}
-        </div>
-        <div className={"loginbtn"} onClick={this.props.handleShowLoginPanel}>
-          {/* {this.props.isActiveLogPanel ? "ZAMKNIJ" : "LOGOWANIE"} */}
-        </div>
+        <div className={"menubtn"} onClick={this.handleShowMenu}></div>
+        <div
+          className={"loginbtn"}
+          onClick={this.props.handleShowLoginPanel}
+        ></div>
         {this.state.isActiveMenu ? (
           <MenuBar handleShowMenu={this.handleShowMenu} />
         ) : null}

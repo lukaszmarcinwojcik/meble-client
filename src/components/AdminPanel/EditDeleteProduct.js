@@ -10,20 +10,25 @@ class EditDeleteProduct extends React.Component {
 
     let deleteProduct =
       "http://localhost:5000/admin/delete/product/" + this.props._id;
-    console.log("linki: ", deleteProduct);
+
     fetch(deleteProduct, {
       method: "DELETE",
       headers: {
-        "x-access-token": localStorage.getItem("token"),
+        "x-access-token": localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        this.showDeletePanel();
-        this.props.updateProductList();
-        alert("usunieto produkt");
+        if (data.error) {
+          localStorage.clear();
+          alert(data.error);
+          window.location.reload(true);
+        } else {
+          this.showDeletePanel();
+          this.props.updateProductList();
+          alert("usunieto produkt");
+        }
       });
   };
   showDeletePanel = () => {

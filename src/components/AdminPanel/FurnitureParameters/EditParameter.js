@@ -30,7 +30,6 @@ class EditParameter extends React.Component {
     }
     let editParam =
       "http://localhost:5000/admin/edit/" + this.props.parameterName;
-    console.log("linki: ", editParam);
 
     fetch(editParam, {
       method: "PUT",
@@ -39,19 +38,24 @@ class EditParameter extends React.Component {
         newName: this.state.newParameter,
       }),
       headers: {
-        "x-access-token": localStorage.getItem("token"),
+        "x-access-token": localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        alert("zmieniono parametr");
-        this.props.updateParameters();
-        this.setState({
-          activeParameterId: "-1",
-          newParameter: "",
-        });
+        if (data.error) {
+          localStorage.clear();
+          alert(data.error);
+          window.location.reload(true);
+        } else {
+          alert("zmieniono parametr");
+          this.props.updateParameters();
+          this.setState({
+            activeParameterId: "-1",
+            newParameter: "",
+          });
+        }
       });
   };
   render() {
@@ -65,9 +69,9 @@ class EditParameter extends React.Component {
     ));
     return (
       <div>
-        <label>EDYTUJ</label>
+        <label className={"adminpanelbtn"}>EDYTUJ</label>
         <select
-          className={"selectfilterPanel"}
+          className={"adminpanelbtn"}
           value={this.state.activeParameterId}
           name={"activeParameterId"}
           onChange={this.handleParameterChange}

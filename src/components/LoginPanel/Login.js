@@ -1,5 +1,4 @@
 import React from "react";
-// import "./DeleteEditProdukt.css";
 
 const ErrorsList = (props) => {
   let errorsList = props.errorsList.map((error) => (

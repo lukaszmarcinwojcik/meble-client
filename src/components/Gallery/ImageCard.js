@@ -7,8 +7,6 @@ class ImageCard extends React.Component {
   state = { isActiveImage: false };
 
   handleShowImage = () => {
-    console.log("click!");
-
     this.setState({
       isActiveImage: !this.state.isActiveImage,
     });

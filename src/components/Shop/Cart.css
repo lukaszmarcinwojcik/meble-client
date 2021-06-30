@@ -1,5 +1,28 @@
 .cart {
-  background-color: lightgray;
-  height: 700px;
+  height: auto;
   width: 100%;
+}
+.goToShop {
+  background-image: url("../../image/icons/iconmonstr-shop-7-64.png");
+  position: relative;
+  left: 1150px;
+  bottom: 70px;
+  height: 64px;
+  width: 64px;
+  margin-left: 5px;
+}
+
+.paymentMethod {
+  background-image: url("../../image/icons/przelewy24-metody-platnosci.png");
+  height: 480px;
+  width: 853px;
+  margin: auto;
+}
+.cartBtn {
+  height: 30px;
+}
+.cartTitle {
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid black;
 }

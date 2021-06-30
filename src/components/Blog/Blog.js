@@ -43,9 +43,7 @@ class Blog extends React.Component {
       })
       .then((response) => response.json())
       .then((articleList) => {
-        console.log("article do articleList:", articleList);
         let articleLength = articleList.length;
-        console.log("dlugosc tablicy", articleLength);
         this.setState({
           articleList: articleList,
           articleLength: articleLength,
@@ -72,7 +70,6 @@ class Blog extends React.Component {
             handlePrevArticle={this.handlePrevArticle}
             updateArticle={this.updateArticle}
             _id={articleList[articleNumber]._id}
-            key={articleList[articleNumber]._id}
             title={articleList[articleNumber].title}
             body={articleList[articleNumber].body}
             author={articleList[articleNumber].author}

@@ -15,14 +15,14 @@ const Footer = (props) => {
           <h3>ZNAJDZIESZ NAS NA</h3>
           <div className={"media"}>
             <a href="#footer" className={"iconFb"}>
-              ""
+              <span></span>
             </a>
 
             <a href="#footer" className={"iconTw"}>
-              ""
+              <span></span>
             </a>
             <a href="#footer" className={"iconIn"}>
-              ""
+              <span></span>
             </a>
           </div>
         </div>

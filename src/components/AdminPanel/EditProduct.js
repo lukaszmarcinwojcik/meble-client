@@ -32,7 +32,6 @@ class EditProduct extends React.Component {
       })
       .then((response) => response.json())
       .then((collectionList) => {
-        console.log("pobrano: ", collectionList);
         this.setState({
           collectionList: collectionList,
         });
@@ -50,7 +49,6 @@ class EditProduct extends React.Component {
       })
       .then((response) => response.json())
       .then((materialList) => {
-        console.log("pobrano: ", materialList);
         this.setState({
           materialList: materialList,
         });
@@ -68,7 +66,6 @@ class EditProduct extends React.Component {
       })
       .then((response) => response.json())
       .then((roomList) => {
-        console.log("pobrano: ", roomList);
         this.setState({
           roomList: roomList,
         });
@@ -86,7 +83,6 @@ class EditProduct extends React.Component {
       })
       .then((response) => response.json())
       .then((typeList) => {
-        console.log("pobrano: ", typeList);
         this.setState({
           typeList: typeList,
         });
@@ -94,7 +90,6 @@ class EditProduct extends React.Component {
       .catch((error) => console.log(error));
   };
   setActiveParameters = () => {
-    console.log("ustawiam typ: ", this.props.type);
     this.setState({
       activeId: this.props._id,
       activeName: this.props.name,
@@ -117,8 +112,6 @@ class EditProduct extends React.Component {
   }
 
   handleFilteringChange = (e) => {
-    console.log("jakie okno", e.target.name);
-    console.log("jaka wartosc", e.target.value);
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -126,7 +119,7 @@ class EditProduct extends React.Component {
     });
   };
 
-  handleAddProdukt = (e) => {
+  handleEditProdukt = (e) => {
     e.preventDefault();
     const {
       activeId,
@@ -151,57 +144,50 @@ class EditProduct extends React.Component {
         filename: activeFilename,
       }),
       headers: {
-        "x-access-token": localStorage.getItem("token"),
+        "x-access-token": localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("to mi zwrocilo: ", data);
         this.props.updateProductList();
         this.props.showEditPanel();
-        if (data.message) {
-          alert(data.message);
+        if (data.error) {
+          localStorage.clear();
+          alert(data.error);
         } else {
-          alert("Zapisano zmiany");
+          alert("produkt zostal zmieniony");
         }
-        this.setState({
-          // loginMessage: data.loginMessage,
-          // islogged: data.islogged,
-          // poziomDostepu: data.poziomDostepu,
-        });
       });
-
-    //////////////////////////////////////////////////////
   };
   render() {
-    let kolekcje = this.state.collectionList.map((collection) => (
+    let collections = this.state.collectionList.map((collection) => (
       <option key={collection._id} value={collection.name}>
         {collection.name}
       </option>
     ));
-    let materialy = this.state.materialList.map((material) => (
+    let materials = this.state.materialList.map((material) => (
       <option key={material._id} value={material.name}>
         {material.name}
       </option>
     ));
-    let pomieszczenia = this.state.roomList.map((room) => (
+    let rooms = this.state.roomList.map((room) => (
       <option key={room._id} value={room.name}>
         {room.name}
       </option>
     ));
-    let rodzaje = this.state.typeList.map((type) => (
+    let types = this.state.typeList.map((type) => (
       <option key={type._id} value={type.name}>
         {type.name}
       </option>
     ));
     return (
-      <div className="EdytujParametryPanel">
+      <div className="EditParamitersPanel">
         <div>
           <div className={"paneloption"}>
             <label htmlFor="activeName">Podaj nazwę: </label>
             <input
-              className={"addProduktinput"}
+              className={"addProductinput"}
               type={"text"}
               value={this.state.activeName}
               name={"activeName"}
@@ -211,52 +197,52 @@ class EditProduct extends React.Component {
           <div className={"paneloption"}>
             <label htmlFor="activeCollection">Wybierz kolekcje: </label>
             <select
-              className={"selectAddProdukt"}
+              className={"selectAddProduct"}
               value={this.state.activeCollection}
               name={"activeCollection"}
               onChange={this.handleFilteringChange}
             >
-              {kolekcje}
+              {collections}
             </select>
           </div>
 
           <div className={"paneloption"}>
             <label htmlFor="activeMaterial">Wybierz material: </label>
             <select
-              className={"selectAddProdukt"}
+              className={"selectAddProduct"}
               value={this.state.activeMaterial}
               name={"activeMaterial"}
               onChange={this.handleFilteringChange}
             >
-              {materialy}
+              {materials}
             </select>
           </div>
           <div className={"paneloption"}>
             <label htmlFor="activeRoom">Wybierz pomieszczenie: </label>
             <select
-              className={"selectAddProdukt"}
+              className={"selectAddProduct"}
               value={this.state.activeRoom}
               name={"activeRoom"}
               onChange={this.handleFilteringChange}
             >
-              {pomieszczenia}
+              {rooms}
             </select>
           </div>
           <div className={"paneloption"}>
             <label htmlFor="activeType">Wybierz rodzaj: </label>
             <select
-              className={"selectAddProdukt"}
+              className={"selectAddProduct"}
               value={this.state.activeType}
               name="activeType"
               onChange={this.handleFilteringChange}
             >
-              {rodzaje}
+              {types}
             </select>
           </div>
           <div className={"paneloption"}>
             <label htmlFor="activePrice">Wprowadz cene: </label>
             <input
-              className={"addProduktinput"}
+              className={"addProductinput"}
               type={"text"}
               value={this.state.activePrice}
               name={"activePrice"}
@@ -266,7 +252,7 @@ class EditProduct extends React.Component {
           <div className={"paneloption"}>
             <label htmlFor="activeFilename">Wprowadz link do obrazu: </label>
             <input
-              className={"addProduktinput"}
+              className={"addProductinput"}
               type={"text"}
               value={this.state.activeFilename}
               name={"activeFilename"}
@@ -274,7 +260,7 @@ class EditProduct extends React.Component {
             ></input>
           </div>
           <div className={"paneloption"}>
-            <button className={"btnAdd"} onClick={this.handleAddProdukt}>
+            <button className={"btnAdd"} onClick={this.handleEditProdukt}>
               ZAPISZ ZMIANY
             </button>
           </div>

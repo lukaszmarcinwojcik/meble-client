@@ -17,7 +17,6 @@ class EditProductList extends React.Component {
       })
       .then((response) => response.json())
       .then((productList) => {
-        console.log("pobrane meble do meble list:", productList);
         this.setState({
           productList: productList,
         });
@@ -46,7 +45,7 @@ class EditProductList extends React.Component {
       />
     ));
     return (
-      <div className="EdytujParametryPanel">
+      <div className="EditParamitersPanel">
         <div className={"paneloption"}>
           <h2>Panel edycji mebli</h2>
         </div>

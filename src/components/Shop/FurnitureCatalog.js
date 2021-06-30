@@ -3,6 +3,7 @@ import "./FurnitureCatalog.css";
 import AddProduct from "../AdminPanel/AddProduct";
 import EditParameters from "../AdminPanel/EditParameters";
 import EditProductList from "../AdminPanel/EditProductList";
+import FurnitureFilterPanel from "./FurnitureFilterPanel";
 
 import Furniture from "./Furniture";
 
@@ -11,40 +12,51 @@ class FurnitureCatalog extends React.Component {
     editParametersIsActive: false,
     addProductPanelIsActive: false,
     editProductListIsActive: false,
+    catalogIsActive: true,
   };
   showAddProductPanel = (e) => {
-    console.log("status paneluADD: ", !this.state.addProductPanelIsActive);
     this.setState({
       addProductPanelIsActive: !this.state.addProductPanelIsActive,
       editParametersIsActive: false,
       editProductListIsActive: false,
+      catalogIsActive: false,
     });
   };
 
   showEditParameters = (e) => {
-    console.log(
-      "status paneluEDIT param: ",
-      !this.state.editParametersIsActive
-    );
     this.setState({
       editParametersIsActive: !this.state.editParametersIsActive,
       addProductPanelIsActive: false,
       editProductListIsActive: false,
+      catalogIsActive: false,
     });
   };
+  componentDidMount() {
+    this.showCatalog();
+  }
   showEditProductList = (e) => {
-    console.log(
-      "status paneluEDITproduct: ",
-      !this.state.editProductListIsActive
-    );
     this.setState({
       editProductListIsActive: !this.state.editProductListIsActive,
+      addProductPanelIsActive: false,
+      editParametersIsActive: false,
+      catalogIsActive: false,
+    });
+  };
+  showCatalog = (e) => {
+    this.setState({
+      catalogIsActive: true,
+      editProductListIsActive: false,
       addProductPanelIsActive: false,
       editParametersIsActive: false,
     });
   };
 
   render() {
+    const catalog = (
+      <button onClick={this.showCatalog} className={"addNewMebel"}>
+        KATALOG
+      </button>
+    );
     const dodajNowyMebel = (
       <button onClick={this.showAddProductPanel} className={"addNewMebel"}>
         DODAJ NOWY PRODUKT
@@ -80,9 +92,16 @@ class FurnitureCatalog extends React.Component {
 
     return (
       <div className="mebleList">
-        <div className={"mebleListTitle"}>
-          <h2>KATALOG MEBLI</h2>
-          <h2 onClick={this.props.handleShowCart}>Przejdz do koszyka</h2>
+        <div>
+          <h2 className={"mebleListTitle"}>
+            KATALOG MEBLI
+            <div
+              className={"goToCart"}
+              onClick={this.props.handleShowCart}
+            ></div>
+          </h2>
+
+          {this.props.accessLevel === 3 ? catalog : null}
           {this.props.accessLevel === 3 ? dodajNowyMebel : null}
           {this.props.accessLevel === 3 ? edytujProdukty : null}
           {this.props.accessLevel === 3 ? edytujParametry : null}
@@ -100,7 +119,25 @@ class FurnitureCatalog extends React.Component {
             />
           ) : null}
         </div>
-        {meble}
+        {this.state.catalogIsActive ? (
+          <div>
+            <FurnitureFilterPanel
+              activeCollection={this.props.activeCollection}
+              activeMaterial={this.props.activeMaterial}
+              activeRoom={this.props.activeRoom}
+              activeType={this.props.activeType}
+              collectionList={this.props.collectionList}
+              materialList={this.props.materialList}
+              roomList={this.props.roomList}
+              typeList={this.props.typeList}
+              handleFilteringSubmit={this.props.handleFilteringSubmit}
+              handleFilteringChange={this.props.handleFilteringChange}
+              handleDeleteFilters={this.props.handleDeleteFilters}
+              accessLevel={this.props.accessLevel}
+            />
+            {meble}
+          </div>
+        ) : null}
       </div>
     );
   }

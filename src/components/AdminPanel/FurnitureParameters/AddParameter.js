@@ -21,26 +21,30 @@ class AddParameter extends React.Component {
     let addParam =
       "http://localhost:5000/admin/add/" + this.props.parameterName;
     let value = this.state.newParameter;
-    console.log("fetch to bedzie: ", addParam);
-    console.log("value w walue: ", value);
+
     fetch(addParam, {
       method: "POST",
       body: JSON.stringify({
         value: value,
       }),
       headers: {
-        "x-access-token": localStorage.getItem("token"),
+        "x-access-token": localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("dodano nowy parametr:", data);
-        alert("dodano nowy parametr");
-        this.props.updateParameters();
-        this.setState({
-          newParameter: "",
-        });
+        if (data.error) {
+          localStorage.clear();
+          alert(data.error);
+          window.location.reload(true);
+        } else {
+          alert("dodano nowy parametr");
+          this.props.updateParameters();
+          this.setState({
+            newParameter: "",
+          });
+        }
       });
   };
   render() {

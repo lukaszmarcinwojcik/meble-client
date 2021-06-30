@@ -1,10 +1,17 @@
 .mebleFilteringPanel {
-  width: 280px;
-  height: 500px;
+  width: 1280px;
   float: left;
-  padding-top: 100px;
-  margin-left: 20px;
-  margin-right: 20px;
+  clear: both;
+  height: auto;
+  margin: auto;
+  margin-bottom: 10px;
+  border-top: black 2px solid;
+  border-bottom: black 2px solid;
+}
+.filterPanelContainer {
+  width: 775px;
+  height: auto;
+  margin: auto;
 }
 .paneloption {
   margin-top: 20px;
@@ -13,19 +20,33 @@
   padding-bottom: 20px;
   text-align: right;
 }
+.filterPanelOption {
+  padding-right: 15px;
+  padding-bottom: 20px;
+  text-align: left;
+  width: 120px;
+  height: 45px;
+  float: left;
+  margin: 10px;
+}
 .selectfilterPanel {
   height: 30px;
-  width: 80px;
-  margin-left: 5px;
+  width: 120px;
+  margin-top: 15px;
+  display: block;
 }
 .butnMebleFilter {
   height: 30px;
-  margin-left: 30px;
+  width: 120px;
+  margin-left: 0px;
   margin-right: 0px;
+  display: inline;
 }
-.szukaj {
-  width: 80px;
+.btnFind {
+  width: 120px;
   height: 30px;
-  margin-left: 30px;
+  margin-top: 5px;
+  margin-left: 0px;
   margin-right: 0px;
+  display: inline;
 }

@@ -31,7 +31,6 @@ class AddProduct extends React.Component {
       })
       .then((response) => response.json())
       .then((collectionList) => {
-        console.log("pobrano: ", collectionList);
         this.setState({
           collectionList: collectionList,
         });
@@ -49,7 +48,6 @@ class AddProduct extends React.Component {
       })
       .then((response) => response.json())
       .then((materialList) => {
-        console.log("pobrano: ", materialList);
         this.setState({
           materialList: materialList,
         });
@@ -67,7 +65,6 @@ class AddProduct extends React.Component {
       })
       .then((response) => response.json())
       .then((roomList) => {
-        console.log("pobrano: ", roomList);
         this.setState({
           roomList: roomList,
         });
@@ -85,7 +82,6 @@ class AddProduct extends React.Component {
       })
       .then((response) => response.json())
       .then((typeList) => {
-        console.log("pobrano: ", typeList);
         this.setState({
           typeList: typeList,
         });
@@ -94,7 +90,6 @@ class AddProduct extends React.Component {
   };
 
   componentDidMount() {
-    // this.getProductList();
     this.getCollectionList();
     this.getMaterialList();
     this.getRoomList();
@@ -102,8 +97,6 @@ class AddProduct extends React.Component {
   }
 
   handleFilteringChange = (e) => {
-    console.log("jakie okno", e.target.name);
-    console.log("jaka wartosc", e.target.value);
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -147,56 +140,53 @@ class AddProduct extends React.Component {
         filename: activeFilename,
       }),
       headers: {
-        "x-access-token": localStorage.getItem("token"),
+        "x-access-token": localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("to mi zwrocilo: ", data);
-        this.setState({
-          // loginMessage: data.loginMessage,
-          // islogged: data.islogged,
-          // poziomDostepu: data.poziomDostepu,
-        });
+        if (data.error) {
+          localStorage.clear();
+          alert(data.error);
+          window.location.reload(true);
+        } else {
+          alert("produkt zostal dodany");
+        }
       });
-
-    //////////////////////////////////////////////////////
   };
   render() {
-    let kolekcje = [{ _id: -1, name: "wybierz" }].concat(
+    let collections = [{ _id: -1, name: "wybierz" }].concat(
       this.state.collectionList
     );
-    kolekcje = kolekcje.map((collection) => (
+    collections = collections.map((collection) => (
       <option key={collection._id} value={collection.name}>
         {collection.name}
       </option>
     ));
-    let materialy = [{ _id: -1, name: "wybierz" }].concat(
+    let materials = [{ _id: -1, name: "wybierz" }].concat(
       this.state.materialList
     );
-    materialy = materialy.map((material) => (
+    materials = materials.map((material) => (
       <option key={material._id} value={material.name}>
         {material.name}
       </option>
     ));
-    let pomieszczenia = [{ _id: -1, name: "wybierz" }].concat(
-      this.state.roomList
-    );
-    pomieszczenia = pomieszczenia.map((room) => (
+    let rooms = [{ _id: -1, name: "wybierz" }].concat(this.state.roomList);
+    rooms = rooms.map((room) => (
       <option key={room._id} value={room.name}>
         {room.name}
       </option>
     ));
-    let rodzaje = [{ _id: -1, name: "wybierz" }].concat(this.state.typeList);
-    rodzaje = rodzaje.map((type) => (
+    let types = [{ _id: -1, name: "wybierz" }].concat(this.state.typeList);
+    types = types.map((type) => (
       <option key={type._id} value={type.name}>
         {type.name}
       </option>
     ));
 
     return (
-      <div className="AddProduktPanel">
+      <div className="AddProductPanel">
         <div className={"paneloption"}>
           <h2>Panel dodawania mebli</h2>
         </div>
@@ -204,7 +194,7 @@ class AddProduct extends React.Component {
           <div className={"paneloption"}>
             <label htmlFor="activeName">Podaj nazwę: </label>
             <input
-              className={"addProduktinput"}
+              className={"addProductinput"}
               type={"text"}
               value={this.state.activeName}
               name={"activeName"}
@@ -214,52 +204,52 @@ class AddProduct extends React.Component {
           <div className={"paneloption"}>
             <label htmlFor="activeCollection">Wybierz kolekcje: </label>
             <select
-              className={"selectAddProdukt"}
+              className={"selectAddProduct"}
               value={this.state.activeCollection}
               name={"activeCollection"}
               onChange={this.handleFilteringChange}
             >
-              {kolekcje}
+              {collections}
             </select>
           </div>
 
           <div className={"paneloption"}>
             <label htmlFor="activeMaterial">Wybierz material: </label>
             <select
-              className={"selectAddProdukt"}
+              className={"selectAddProduct"}
               value={this.state.activeMaterial}
               name={"activeMaterial"}
               onChange={this.handleFilteringChange}
             >
-              {materialy}
+              {materials}
             </select>
           </div>
           <div className={"paneloption"}>
             <label htmlFor="activeRoom">Wybierz pomieszczenie: </label>
             <select
-              className={"selectAddProdukt"}
+              className={"selectAddProduct"}
               value={this.state.activeRoom}
               name={"activeRoom"}
               onChange={this.handleFilteringChange}
             >
-              {pomieszczenia}
+              {rooms}
             </select>
           </div>
           <div className={"paneloption"}>
             <label htmlFor="activeType">Wybierz rodzaj: </label>
             <select
-              className={"selectAddProdukt"}
+              className={"selectAddProduct"}
               value={this.state.activeType}
               name="activeType"
               onChange={this.handleFilteringChange}
             >
-              {rodzaje}
+              {types}
             </select>
           </div>
           <div className={"paneloption"}>
             <label htmlFor="activePrice">Wprowadz cene: </label>
             <input
-              className={"addProduktinput"}
+              className={"addProductinput"}
               type={"text"}
               value={this.state.activePrice}
               name={"activePrice"}
@@ -269,7 +259,7 @@ class AddProduct extends React.Component {
           <div className={"paneloption"}>
             <label htmlFor="activeFilename">Wprowadz link do obrazu: </label>
             <input
-              className={"addProduktinput"}
+              className={"addProductinput"}
               type={"text"}
               value={this.state.activeFilename}
               name={"activeFilename"}

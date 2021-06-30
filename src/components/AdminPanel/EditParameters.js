@@ -2,7 +2,6 @@ import React from "react";
 import "./EditParameters.css";
 import AddEditDeleteParameter from "./FurnitureParameters/AddEditDeleteParameter";
 
-// const API = "http://localhost:5000/";
 const collectionList = "http://localhost:5000/collectionList";
 const materialList = "http://localhost:5000/materialList";
 const roomList = "http://localhost:5000/roomList";
@@ -29,7 +28,6 @@ class EditParameters extends React.Component {
       })
       .then((response) => response.json())
       .then((collectionList) => {
-        console.log("pobrano: ", collectionList);
         this.setState({
           collectionList: collectionList,
         });
@@ -47,7 +45,6 @@ class EditParameters extends React.Component {
       })
       .then((response) => response.json())
       .then((materialList) => {
-        console.log("pobrano: ", materialList);
         this.setState({
           materialList: materialList,
         });
@@ -65,7 +62,6 @@ class EditParameters extends React.Component {
       })
       .then((response) => response.json())
       .then((roomList) => {
-        console.log("pobrano: ", roomList);
         this.setState({
           roomList: roomList,
         });
@@ -83,7 +79,6 @@ class EditParameters extends React.Component {
       })
       .then((response) => response.json())
       .then((typeList) => {
-        console.log("pobrano: ", typeList);
         this.setState({
           typeList: typeList,
         });
@@ -92,9 +87,6 @@ class EditParameters extends React.Component {
   };
 
   handleParameterChange = (e) => {
-    console.log("parametr: ", e.target.name);
-    console.log("wartosc: ", e.target.value);
-    //////////////////////////
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
@@ -103,7 +95,6 @@ class EditParameters extends React.Component {
   };
 
   componentDidMount() {
-    // this.getProductList();
     this.getCollectionList();
     this.getMaterialList();
     this.getRoomList();
@@ -112,7 +103,7 @@ class EditParameters extends React.Component {
 
   render() {
     return (
-      <div className="EdytujParametryPanel">
+      <div className="EditParamitersPanel">
         <div className={"paneloption"}>
           <h2>Panel edycji parametrow mebli</h2>
         </div>
