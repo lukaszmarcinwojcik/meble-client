@@ -10,6 +10,7 @@ const ErrorsList = (props) => {
 };
 
 class Registration extends React.Component {
+
   state = {
     name: "",
     surname: "",
@@ -19,6 +20,7 @@ class Registration extends React.Component {
     errorsList: "",
     message: "",
   };
+
   handleRegistrationChange = (e) => {
     const type = e.target.type;
     const name = e.target.name;
@@ -149,3 +151,7 @@ class Registration extends React.Component {
 }
 
 export default Registration;
+
+
+
+

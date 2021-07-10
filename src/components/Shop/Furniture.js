@@ -8,9 +8,9 @@ class Furniture extends React.Component {
   render() {
     return (
       <>
-        <div className={"mebel"} key={this.props._id}>
-          <h2 className={"mebeltitle"}>{`${this.props.name}`}</h2>
-          <div className={"mebleDescription"}>
+        <div className={"furniture"} key={this.props._id}>
+          <h2 className={"furnituretitle"}>{`${this.props.name}`}</h2>
+          <div className={"furnitureDescription"}>
             <p>
               {"kolekcja: "}
               <span>{this.props.furnitureCollection}</span>
@@ -28,7 +28,7 @@ class Furniture extends React.Component {
               <span>{this.props.price} zł</span>
             </p>
           </div>
-          <div className={"mebelImg"}>
+          <div className={"furnitureImg"}>
             <img
               className={"Img"}
               src={this.props.filename}

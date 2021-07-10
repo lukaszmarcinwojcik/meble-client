@@ -5,26 +5,28 @@ class FurnitureFilterPanel extends React.Component {
   state = {};
 
   render() {
-    let kolekcje = [{ _id: -1, name: "" }].concat(this.props.collectionList);
-    kolekcje = kolekcje.map((collection) => (
+    let collectionList = [{ _id: -1, name: "" }].concat(
+      this.props.collectionList
+    );
+    collectionList = collectionList.map((collection) => (
       <option key={collection._id} value={collection.name}>
         {collection.name}
       </option>
     ));
-    let materialy = [{ _id: -1, name: "" }].concat(this.props.materialList);
-    materialy = materialy.map((material) => (
+    let materialList = [{ _id: -1, name: "" }].concat(this.props.materialList);
+    materialList = materialList.map((material) => (
       <option key={material._id} value={material.name}>
         {material.name}
       </option>
     ));
-    let pomieszczenia = [{ _id: -1, name: "" }].concat(this.props.roomList);
-    pomieszczenia = pomieszczenia.map((room) => (
+    let roomList = [{ _id: -1, name: "" }].concat(this.props.roomList);
+    roomList = roomList.map((room) => (
       <option key={room._id} value={room.name}>
         {room.name}
       </option>
     ));
-    let rodzaje = [{ _id: -1, name: "" }].concat(this.props.typeList);
-    rodzaje = rodzaje.map((type) => (
+    let typeList = [{ _id: -1, name: "" }].concat(this.props.typeList);
+    typeList = typeList.map((type) => (
       <option key={type._id} value={type.name}>
         {type.name}
       </option>
@@ -40,7 +42,7 @@ class FurnitureFilterPanel extends React.Component {
               name={"activeCollection"}
               onChange={this.props.handleFilteringChange}
             >
-              {kolekcje}
+              {collectionList}
             </select>
           </div>
 
@@ -52,7 +54,7 @@ class FurnitureFilterPanel extends React.Component {
               name={"activeMaterial"}
               onChange={this.props.handleFilteringChange}
             >
-              {materialy}
+              {materialList}
             </select>
           </div>
           <div className={"filterPanelOption"}>
@@ -63,7 +65,7 @@ class FurnitureFilterPanel extends React.Component {
               name={"activeRoom"}
               onChange={this.props.handleFilteringChange}
             >
-              {pomieszczenia}
+              {roomList}
             </select>
           </div>
           <div className={"filterPanelOption"}>
@@ -74,7 +76,7 @@ class FurnitureFilterPanel extends React.Component {
               name="activeType"
               onChange={this.props.handleFilteringChange}
             >
-              {rodzaje}
+              {typeList}
             </select>
           </div>
           <div className={"filterPanelOption"}>

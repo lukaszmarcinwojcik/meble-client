@@ -53,27 +53,27 @@ class FurnitureCatalog extends React.Component {
 
   render() {
     const catalog = (
-      <button onClick={this.showCatalog} className={"addNewMebel"}>
+      <button onClick={this.showCatalog} className={"addNewFurniture"}>
         KATALOG
       </button>
     );
-    const dodajNowyMebel = (
-      <button onClick={this.showAddProductPanel} className={"addNewMebel"}>
+    const addNewFurniture = (
+      <button onClick={this.showAddProductPanel} className={"addNewFurniture"}>
         DODAJ NOWY PRODUKT
       </button>
     );
 
-    const edytujParametry = (
-      <button onClick={this.showEditParameters} className={"addNewMebel"}>
+    const editParameters = (
+      <button onClick={this.showEditParameters} className={"addNewFurniture"}>
         EDYTUJ PARAMETRY MEBLI
       </button>
     );
-    const edytujProdukty = (
-      <button onClick={this.showEditProductList} className={"addNewMebel"}>
+    const editFurnitures = (
+      <button onClick={this.showEditProductList} className={"addNewFurniture"}>
         EDYTUJ PRODUKTY
       </button>
     );
-    const meble = this.props.productList.map((product) => (
+    const productList = this.props.productList.map((product) => (
       <Furniture
         key={product._id}
         _id={product._id}
@@ -91,9 +91,9 @@ class FurnitureCatalog extends React.Component {
     ));
 
     return (
-      <div className="mebleList">
+      <div className="furnitureList">
         <div>
-          <h2 className={"mebleListTitle"}>
+          <h2 className={"furnitureListTitle"}>
             KATALOG MEBLI
             <div
               className={"goToCart"}
@@ -102,9 +102,9 @@ class FurnitureCatalog extends React.Component {
           </h2>
 
           {this.props.accessLevel === 3 ? catalog : null}
-          {this.props.accessLevel === 3 ? dodajNowyMebel : null}
-          {this.props.accessLevel === 3 ? edytujProdukty : null}
-          {this.props.accessLevel === 3 ? edytujParametry : null}
+          {this.props.accessLevel === 3 ? addNewFurniture : null}
+          {this.props.accessLevel === 3 ? editFurnitures : null}
+          {this.props.accessLevel === 3 ? editParameters : null}
           {this.state.addProductPanelIsActive ? (
             <AddProduct showAddProductPanel={this.state.showAddProductPanel} />
           ) : null}
@@ -135,7 +135,7 @@ class FurnitureCatalog extends React.Component {
               handleDeleteFilters={this.props.handleDeleteFilters}
               accessLevel={this.props.accessLevel}
             />
-            {meble}
+            {productList}
           </div>
         ) : null}
       </div>

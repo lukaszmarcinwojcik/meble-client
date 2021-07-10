@@ -1,4 +1,4 @@
-.mebleList {
+.furnitureList {
   text-align: left;
   float: left;
   height: auto;
@@ -6,7 +6,7 @@
   width: 1280px;
   margin: auto;
 }
-.mebleListTitle {
+.furnitureListTitle {
   text-align: center;
   height: 30px;
 }
@@ -19,25 +19,25 @@
   width: 64px;
   margin-left: 5px;
 }
-.mebel {
+.furniture {
   height: auto;
   width: 402px;
   margin: 10px;
   float: left;
   border: lightgray 2px solid;
 }
-.mebeltitle {
+.furnituretitle {
   text-align: center;
 }
 
-.mebleDescription {
+.furnitureDescription {
   height: 170px;
   width: 188px;
   float: left;
   padding-left: 10px;
 }
 
-.mebelImg {
+.furnitureImg {
   float: left;
   height: 168px;
   width: 198px;
@@ -79,13 +79,13 @@ span {
   margin-bottom: 15px;
 }
 
-.addNewMebel {
+.addNewFurniture {
   height: 40px;
   width: 287px;
 
   margin-bottom: 30px;
 }
 
-.mebel:hover {
+.furniture:hover {
   border: black 2px solid;
 }
