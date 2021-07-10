@@ -23,6 +23,12 @@
 .menubar a:visited {
   color: white;
 }
+.menubar a:link {
+  color: white;
+}
+.menubar a:active {
+  color: rgb(0, 0, 0);
+}
 .menubar a:hover {
   color: rgb(0, 0, 0);
 }
