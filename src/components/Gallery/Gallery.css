@@ -1,5 +1,6 @@
 .gallery {
   clear: both;
+  min-width: 1000px;
 }
 .galleryContainer {
   width: 80%;

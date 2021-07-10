@@ -1,5 +1,6 @@
 .footer {
   width: 100%;
+  min-width: 1300px;
   background-color: rgba(0, 0, 0, 0.842);
   color: white;
   clear: both;

@@ -1,5 +1,6 @@
 .newsletter {
   background-color: lightgray;
+  min-width: 1300px;
 }
 .newslettercont {
   clear: both;
