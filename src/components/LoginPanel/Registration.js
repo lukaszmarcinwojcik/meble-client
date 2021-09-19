@@ -10,7 +10,6 @@ const ErrorsList = (props) => {
 };
 
 class Registration extends React.Component {
-
   state = {
     name: "",
     surname: "",
@@ -20,7 +19,6 @@ class Registration extends React.Component {
     errorsList: "",
     message: "",
   };
-
   handleRegistrationChange = (e) => {
     const type = e.target.type;
     const name = e.target.name;
@@ -68,16 +66,16 @@ class Registration extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleRegistrationSubmit}>
+      <form className={"regForm"} onSubmit={this.handleRegistrationSubmit}>
         <h2>
           Masz już konto?{" "}
           <span className={"reglogbtn"} onClick={this.props.handleSwitchLogReg}>
-            Przejdz do Logowania
+            Przejdź do logowania
           </span>
         </h2>
 
         <label className={"loginlabel"} htmlFor="name">
-          Imie:
+          Imię:
           <input
             className={"logPanel"}
             type="text"
@@ -110,7 +108,7 @@ class Registration extends React.Component {
           />
         </label>
         <label className={"loginlabel"} htmlFor="password">
-          Haslo:
+          Hasło:
           <input
             className={"logPanel"}
             type="password"
@@ -121,7 +119,7 @@ class Registration extends React.Component {
           />
         </label>
         <label className={"loginlabel"} htmlFor="password">
-          Powtorz haslo:
+          Powtórz hasło:
           <input
             className={"logPanel"}
             type="password"
@@ -151,7 +149,3 @@ class Registration extends React.Component {
 }
 
 export default Registration;
-
-
-
-

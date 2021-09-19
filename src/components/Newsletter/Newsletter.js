@@ -96,7 +96,7 @@ class Newsletter extends React.Component {
           <div className={"newsletterForm"}>
             <form onSubmit={this.handleNewsletterSubmit}>
               <label className={"newsletterlabel"} htmlFor="user">
-                Podaj imie:
+                Podaj imię:
                 <input
                   className={"logPanel"}
                   type="text"

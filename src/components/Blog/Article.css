@@ -62,4 +62,11 @@
 }
 .btnShowAddComment:hover {
   color: darkgray;
+  cursor: pointer;
+}
+.prevArticle:hover {
+  cursor: pointer;
+}
+.nextArticle:hover {
+  cursor: pointer;
 }

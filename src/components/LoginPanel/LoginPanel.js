@@ -16,7 +16,7 @@ class LoginPanel extends React.Component {
   };
   render() {
     return (
-      <div className={"panelLogowania"}>
+      <div className={"loginPanel"}>
         {this.state.isActiveLogin ? (
           <Login
             handleLogout={this.props.handleLogout}

@@ -16,6 +16,7 @@
   top: 15px;
   height: 32px;
   width: 32px;
+  cursor: pointer;
 }
 
 .menubtn {
@@ -26,6 +27,7 @@
 
   height: 30px;
   width: 30px;
+  cursor: pointer;
 }
 .menubtn:hover {
   opacity: 0.5;

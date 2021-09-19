@@ -177,6 +177,7 @@ class Shop extends React.Component {
     if (cartListItem.includes(id)) {
       return;
     }
+    alert("dodano do koszyka")
     cartItem = id;
     cartListItem = cartListItem.concat(cartItem);
     localStorage.setItem("cartListItem", JSON.stringify(cartListItem));
